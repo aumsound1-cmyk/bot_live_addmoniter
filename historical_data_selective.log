@@ -1,0 +1,887 @@
+2026-02-25 13:15:03,286 - INFO - Will collect from: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 13:15:14,075 - INFO - Will collect from: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 13:15:14,077 - INFO - ==================================================
+2026-02-25 13:15:14,079 - INFO - Selective Historical Data Collector Started
+2026-02-25 13:15:14,080 - INFO - Collections: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 13:15:14,082 - INFO - Will run every hour at :00
+2026-02-25 13:15:14,085 - INFO - Press Ctrl+C to stop
+2026-02-25 13:15:14,085 - INFO - ==================================================
+2026-02-25 13:15:14,086 - INFO - Starting selective collection at 2026-02-25 13:15:14.086355
+2026-02-25 13:15:14,088 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-25 13:15:14,226 - INFO - Found 87 unique channels in live_shopee
+2026-02-25 13:15:14,308 - INFO - Found 6 unique channels in stop_shopee
+2026-02-25 13:15:14,455 - INFO - Found 315 unique channels in moniter_new
+2026-02-25 13:15:14,525 - INFO - 
+Collection Statistics:
+2026-02-25 13:15:14,529 - INFO -   live_shopee: 87 channels
+2026-02-25 13:15:14,538 - INFO -   stop_shopee: 6 channels
+2026-02-25 13:15:14,540 - INFO -   moniter_new: 315 channels
+2026-02-25 13:15:14,546 - INFO - Found 408 channels from selected collections
+2026-02-25 13:15:32,528 - INFO - Progress: 100/408 channels processed
+2026-02-25 13:15:48,766 - INFO - Progress: 200/408 channels processed
+2026-02-25 13:16:05,606 - INFO - Progress: 300/408 channels processed
+2026-02-25 13:16:21,787 - INFO - Progress: 400/408 channels processed
+2026-02-25 13:16:23,020 - INFO - ==================================================
+2026-02-25 13:16:23,021 - INFO - SUMMARY
+2026-02-25 13:16:23,021 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 13:16:23,021 - INFO - Total unique channels: 408
+2026-02-25 13:16:23,023 - INFO - Successfully processed: 408
+2026-02-25 13:16:23,023 - INFO - Failed: 0
+2026-02-25 13:16:23,091 - INFO - 
+============================== NEW RUN ==============================
+2026-02-25 13:16:23,092 - INFO - Starting selective collection at 2026-02-25 13:16:23.092685
+2026-02-25 13:16:23,093 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-25 13:16:24,229 - INFO - Found 87 unique channels in live_shopee
+2026-02-25 13:16:24,291 - INFO - Found 6 unique channels in stop_shopee
+2026-02-25 13:16:24,466 - INFO - Found 315 unique channels in moniter_new
+2026-02-25 13:16:24,525 - INFO - 
+Collection Statistics:
+2026-02-25 13:16:24,526 - INFO -   live_shopee: 87 channels
+2026-02-25 13:16:24,526 - INFO -   stop_shopee: 6 channels
+2026-02-25 13:16:24,526 - INFO -   moniter_new: 315 channels
+2026-02-25 13:16:24,528 - INFO - Found 408 channels from selected collections
+2026-02-25 13:16:41,541 - INFO - Progress: 100/408 channels processed
+2026-02-25 13:16:56,738 - INFO - Progress: 200/408 channels processed
+2026-02-25 13:17:14,060 - INFO - Progress: 300/408 channels processed
+2026-02-25 13:17:31,070 - INFO - Progress: 400/408 channels processed
+2026-02-25 13:17:32,419 - INFO - ==================================================
+2026-02-25 13:17:32,423 - INFO - SUMMARY
+2026-02-25 13:17:32,428 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 13:17:32,438 - INFO - Total unique channels: 408
+2026-02-25 13:17:32,441 - INFO - Successfully processed: 408
+2026-02-25 13:17:32,443 - INFO - Failed: 0
+2026-02-25 13:33:21,647 - INFO - Will collect from: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 13:33:27,408 - INFO - Will collect from: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 13:33:27,411 - INFO - ==================================================
+2026-02-25 13:33:27,411 - INFO - Selective Historical Data Collector Started
+2026-02-25 13:33:27,411 - INFO - Collections: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 13:33:27,412 - INFO - Will run every hour at :00
+2026-02-25 13:33:27,412 - INFO - Press Ctrl+C to stop
+2026-02-25 13:33:27,412 - INFO - ==================================================
+2026-02-25 13:33:27,412 - INFO - Starting selective collection at 2026-02-25 13:33:27.412752
+2026-02-25 13:33:27,412 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-25 13:33:27,482 - INFO - Found 87 unique channels in live_shopee
+2026-02-25 13:33:27,546 - INFO - Found 6 unique channels in stop_shopee
+2026-02-25 13:33:27,679 - INFO - Found 315 unique channels in moniter_new
+2026-02-25 13:33:27,746 - INFO - 
+Collection Statistics:
+2026-02-25 13:33:27,746 - INFO -   live_shopee: 87 channels
+2026-02-25 13:33:27,746 - INFO -   stop_shopee: 6 channels
+2026-02-25 13:33:27,746 - INFO -   moniter_new: 315 channels
+2026-02-25 13:33:27,746 - INFO - Found 408 channels from selected collections
+2026-02-25 13:33:42,322 - INFO - Progress: 100/408 channels processed
+2026-02-25 13:33:57,245 - INFO - Progress: 200/408 channels processed
+2026-02-25 13:34:10,958 - INFO - Progress: 300/408 channels processed
+2026-02-25 13:34:24,390 - INFO - Progress: 400/408 channels processed
+2026-02-25 13:34:25,467 - INFO - ==================================================
+2026-02-25 13:34:25,467 - INFO - SUMMARY
+2026-02-25 13:34:25,467 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 13:34:25,467 - INFO - Total unique channels: 408
+2026-02-25 13:34:25,467 - INFO - Successfully processed: 408
+2026-02-25 13:34:25,467 - INFO - Failed: 0
+2026-02-25 13:34:25,523 - INFO - 
+============================== NEW RUN ==============================
+2026-02-25 13:34:25,523 - INFO - Starting selective collection at 2026-02-25 13:34:25.523637
+2026-02-25 13:34:25,524 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-25 13:34:25,584 - INFO - Found 87 unique channels in live_shopee
+2026-02-25 13:34:25,627 - INFO - Found 6 unique channels in stop_shopee
+2026-02-25 13:34:25,728 - INFO - Found 315 unique channels in moniter_new
+2026-02-25 13:34:25,774 - INFO - 
+Collection Statistics:
+2026-02-25 13:34:25,774 - INFO -   live_shopee: 87 channels
+2026-02-25 13:34:25,776 - INFO -   stop_shopee: 6 channels
+2026-02-25 13:34:25,776 - INFO -   moniter_new: 315 channels
+2026-02-25 13:34:25,776 - INFO - Found 408 channels from selected collections
+2026-02-25 13:34:40,349 - INFO - Progress: 100/408 channels processed
+2026-02-25 13:34:53,304 - INFO - Progress: 200/408 channels processed
+2026-02-25 13:35:06,021 - INFO - Progress: 300/408 channels processed
+2026-02-25 13:35:19,956 - INFO - Progress: 400/408 channels processed
+2026-02-25 13:35:21,054 - INFO - ==================================================
+2026-02-25 13:35:21,055 - INFO - SUMMARY
+2026-02-25 13:35:21,055 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 13:35:21,056 - INFO - Total unique channels: 408
+2026-02-25 13:35:21,056 - INFO - Successfully processed: 408
+2026-02-25 13:35:21,056 - INFO - Failed: 0
+2026-02-25 14:09:47,887 - INFO - Will collect from: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 14:10:50,331 - INFO - Will collect from: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 14:10:50,331 - INFO - ==================================================
+2026-02-25 14:10:50,332 - INFO - Selective Historical Data Collector Started
+2026-02-25 14:10:50,332 - INFO - Collections: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 14:10:50,332 - INFO - Will run every hour at :00
+2026-02-25 14:10:50,333 - INFO - Press Ctrl+C to stop
+2026-02-25 14:10:50,333 - INFO - ==================================================
+2026-02-25 14:10:50,333 - INFO - Starting selective collection at 2026-02-25 14:10:50.333837
+2026-02-25 14:10:50,333 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-25 14:10:50,407 - INFO - Found 82 unique channels in live_shopee
+2026-02-25 14:10:50,470 - INFO - Found 6 unique channels in stop_shopee
+2026-02-25 14:10:50,532 - INFO - Found 172 unique channels in moniter_old
+2026-02-25 14:10:50,623 - INFO - Found 1325 unique channels in moniter_new
+2026-02-25 14:10:50,685 - INFO - 
+Collection Statistics:
+2026-02-25 14:10:50,685 - INFO -   live_shopee: 82 channels
+2026-02-25 14:10:50,685 - INFO -   stop_shopee: 6 channels
+2026-02-25 14:10:50,685 - INFO -   moniter_old: 172 channels
+2026-02-25 14:10:50,685 - INFO -   moniter_new: 1325 channels
+2026-02-25 14:10:50,685 - INFO - Found 1585 channels from selected collections
+2026-02-25 14:11:07,215 - INFO - Progress: 100/1585 channels processed
+2026-02-25 14:11:21,845 - INFO - Progress: 200/1585 channels processed
+2026-02-25 14:11:37,175 - INFO - Progress: 300/1585 channels processed
+2026-02-25 14:11:51,105 - INFO - Progress: 400/1585 channels processed
+2026-02-25 14:12:23,400 - WARNING - Retrying (Retry(total=9, connect=1, read=0, redirect=None, status=4)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /historical_data/moixpcmoj/2026-02-25/14.json?print=silent
+2026-02-25 14:12:24,544 - INFO - Progress: 500/1585 channels processed
+2026-02-25 14:12:38,155 - INFO - Progress: 600/1585 channels processed
+2026-02-25 14:12:51,441 - INFO - Progress: 700/1585 channels processed
+2026-02-25 14:13:06,354 - INFO - Progress: 800/1585 channels processed
+2026-02-25 14:13:21,024 - INFO - Progress: 900/1585 channels processed
+2026-02-25 14:13:35,394 - INFO - Progress: 1000/1585 channels processed
+2026-02-25 14:13:49,230 - INFO - Progress: 1100/1585 channels processed
+2026-02-25 14:14:02,804 - INFO - Progress: 1200/1585 channels processed
+2026-02-25 14:14:16,341 - INFO - Progress: 1300/1585 channels processed
+2026-02-25 14:14:29,485 - INFO - Progress: 1400/1585 channels processed
+2026-02-25 14:14:43,408 - INFO - Progress: 1500/1585 channels processed
+2026-02-25 14:14:55,602 - INFO - ==================================================
+2026-02-25 14:14:55,602 - INFO - SUMMARY
+2026-02-25 14:14:55,603 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 14:14:55,603 - INFO - Total unique channels: 1585
+2026-02-25 14:14:55,603 - INFO - Successfully processed: 1585
+2026-02-25 14:14:55,603 - INFO - Failed: 0
+2026-02-25 14:14:55,661 - INFO - 
+============================== NEW RUN ==============================
+2026-02-25 14:14:55,661 - INFO - Starting selective collection at 2026-02-25 14:14:55.661870
+2026-02-25 14:14:55,661 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-25 14:14:55,713 - INFO - Found 88 unique channels in live_shopee
+2026-02-25 14:14:55,773 - INFO - Found 5 unique channels in stop_shopee
+2026-02-25 14:14:55,825 - INFO - Found 172 unique channels in moniter_old
+2026-02-25 14:14:55,925 - INFO - Found 1325 unique channels in moniter_new
+2026-02-25 14:14:55,993 - INFO - 
+Collection Statistics:
+2026-02-25 14:14:56,000 - INFO -   live_shopee: 88 channels
+2026-02-25 14:14:56,003 - INFO -   stop_shopee: 5 channels
+2026-02-25 14:14:56,003 - INFO -   moniter_old: 172 channels
+2026-02-25 14:14:56,003 - INFO -   moniter_new: 1325 channels
+2026-02-25 14:14:56,003 - INFO - Found 1590 channels from selected collections
+2026-02-25 14:15:09,733 - INFO - Progress: 100/1590 channels processed
+2026-02-25 14:15:23,623 - INFO - Progress: 200/1590 channels processed
+2026-02-25 14:15:37,915 - INFO - Progress: 300/1590 channels processed
+2026-02-25 14:15:51,453 - INFO - Progress: 400/1590 channels processed
+2026-02-25 14:16:04,547 - INFO - Progress: 500/1590 channels processed
+2026-02-25 14:16:17,503 - INFO - Progress: 600/1590 channels processed
+2026-02-25 14:16:30,935 - INFO - Progress: 700/1590 channels processed
+2026-02-25 14:16:44,703 - INFO - Progress: 800/1590 channels processed
+2026-02-25 14:16:57,272 - INFO - Progress: 900/1590 channels processed
+2026-02-25 14:17:11,835 - INFO - Progress: 1000/1590 channels processed
+2026-02-25 14:17:25,177 - INFO - Progress: 1100/1590 channels processed
+2026-02-25 14:17:38,402 - INFO - Progress: 1200/1590 channels processed
+2026-02-25 14:17:52,702 - INFO - Progress: 1300/1590 channels processed
+2026-02-25 14:18:06,074 - INFO - Progress: 1400/1590 channels processed
+2026-02-25 14:18:20,159 - INFO - Progress: 1500/1590 channels processed
+2026-02-25 14:18:33,763 - INFO - ==================================================
+2026-02-25 14:18:33,763 - INFO - SUMMARY
+2026-02-25 14:18:33,763 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 14:18:33,763 - INFO - Total unique channels: 1590
+2026-02-25 14:18:33,763 - INFO - Successfully processed: 1590
+2026-02-25 14:18:33,763 - INFO - Failed: 0
+2026-02-25 15:00:33,792 - INFO - 
+============================== NEW RUN ==============================
+2026-02-25 15:00:33,792 - INFO - Starting selective collection at 2026-02-25 15:00:33.792717
+2026-02-25 15:00:33,792 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-25 15:00:34,131 - INFO - Found 86 unique channels in live_shopee
+2026-02-25 15:00:34,193 - INFO - Found 2 unique channels in stop_shopee
+2026-02-25 15:00:34,276 - INFO - Found 172 unique channels in moniter_old
+2026-02-25 15:00:34,428 - INFO - Found 1339 unique channels in moniter_new
+2026-02-25 15:00:34,485 - INFO - 
+Collection Statistics:
+2026-02-25 15:00:34,490 - INFO -   live_shopee: 86 channels
+2026-02-25 15:00:34,491 - INFO -   stop_shopee: 2 channels
+2026-02-25 15:00:34,491 - INFO -   moniter_old: 172 channels
+2026-02-25 15:00:34,491 - INFO -   moniter_new: 1339 channels
+2026-02-25 15:00:34,492 - INFO - Found 1599 channels from selected collections
+2026-02-25 15:00:49,030 - INFO - Progress: 100/1599 channels processed
+2026-02-25 15:01:02,970 - INFO - Progress: 200/1599 channels processed
+2026-02-25 15:01:17,665 - INFO - Progress: 300/1599 channels processed
+2026-02-25 15:01:31,548 - INFO - Progress: 400/1599 channels processed
+2026-02-25 15:01:46,149 - INFO - Progress: 500/1599 channels processed
+2026-02-25 15:02:01,079 - INFO - Progress: 600/1599 channels processed
+2026-02-25 15:02:14,569 - INFO - Progress: 700/1599 channels processed
+2026-02-25 15:02:28,648 - INFO - Progress: 800/1599 channels processed
+2026-02-25 15:02:42,021 - INFO - Progress: 900/1599 channels processed
+2026-02-25 15:02:55,013 - INFO - Progress: 1000/1599 channels processed
+2026-02-25 15:03:09,588 - INFO - Progress: 1100/1599 channels processed
+2026-02-25 15:03:22,747 - INFO - Progress: 1200/1599 channels processed
+2026-02-25 15:03:35,807 - INFO - Progress: 1300/1599 channels processed
+2026-02-25 15:03:49,126 - INFO - Progress: 1400/1599 channels processed
+2026-02-25 15:04:02,574 - INFO - Progress: 1500/1599 channels processed
+2026-02-25 15:04:14,949 - INFO - ==================================================
+2026-02-25 15:04:14,949 - INFO - SUMMARY
+2026-02-25 15:04:14,949 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 15:04:14,949 - INFO - Total unique channels: 1599
+2026-02-25 15:04:14,949 - INFO - Successfully processed: 1599
+2026-02-25 15:04:14,949 - INFO - Failed: 0
+2026-02-25 16:00:14,963 - INFO - 
+============================== NEW RUN ==============================
+2026-02-25 16:00:14,963 - INFO - Starting selective collection at 2026-02-25 16:00:14.963131
+2026-02-25 16:00:14,964 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-25 16:00:15,697 - INFO - Found 94 unique channels in live_shopee
+2026-02-25 16:00:15,838 - INFO - Found 166 unique channels in moniter_old
+2026-02-25 16:00:15,983 - INFO - Found 1339 unique channels in moniter_new
+2026-02-25 16:00:16,046 - INFO - 
+Collection Statistics:
+2026-02-25 16:00:16,047 - INFO -   live_shopee: 94 channels
+2026-02-25 16:00:16,047 - INFO -   moniter_old: 166 channels
+2026-02-25 16:00:16,047 - INFO -   moniter_new: 1339 channels
+2026-02-25 16:00:16,047 - INFO - Found 1599 channels from selected collections
+2026-02-25 16:00:30,665 - INFO - Progress: 100/1599 channels processed
+2026-02-25 16:00:44,709 - INFO - Progress: 200/1599 channels processed
+2026-02-25 16:01:00,097 - INFO - Progress: 300/1599 channels processed
+2026-02-25 16:01:14,398 - INFO - Progress: 400/1599 channels processed
+2026-02-25 16:01:29,136 - INFO - Progress: 500/1599 channels processed
+2026-02-25 16:01:44,278 - INFO - Progress: 600/1599 channels processed
+2026-02-25 16:01:58,686 - INFO - Progress: 700/1599 channels processed
+2026-02-25 16:02:14,817 - INFO - Progress: 800/1599 channels processed
+2026-02-25 16:02:28,536 - INFO - Progress: 900/1599 channels processed
+2026-02-25 16:02:42,060 - INFO - Progress: 1000/1599 channels processed
+2026-02-25 16:02:55,305 - INFO - Progress: 1100/1599 channels processed
+2026-02-25 16:03:09,526 - INFO - Progress: 1200/1599 channels processed
+2026-02-25 16:03:23,545 - INFO - Progress: 1300/1599 channels processed
+2026-02-25 16:03:38,794 - INFO - Progress: 1400/1599 channels processed
+2026-02-25 16:03:52,640 - INFO - Progress: 1500/1599 channels processed
+2026-02-25 16:04:06,401 - INFO - ==================================================
+2026-02-25 16:04:06,401 - INFO - SUMMARY
+2026-02-25 16:04:06,402 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 16:04:06,402 - INFO - Total unique channels: 1599
+2026-02-25 16:04:06,402 - INFO - Successfully processed: 1599
+2026-02-25 16:04:06,404 - INFO - Failed: 0
+2026-02-25 17:00:06,436 - INFO - 
+============================== NEW RUN ==============================
+2026-02-25 17:00:06,436 - INFO - Starting selective collection at 2026-02-25 17:00:06.436866
+2026-02-25 17:00:06,437 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-25 17:00:07,154 - INFO - Found 90 unique channels in live_shopee
+2026-02-25 17:00:07,287 - INFO - Found 166 unique channels in moniter_old
+2026-02-25 17:00:07,443 - INFO - Found 1345 unique channels in moniter_new
+2026-02-25 17:00:07,503 - INFO - 
+Collection Statistics:
+2026-02-25 17:00:07,503 - INFO -   live_shopee: 90 channels
+2026-02-25 17:00:07,503 - INFO -   moniter_old: 166 channels
+2026-02-25 17:00:07,503 - INFO -   moniter_new: 1345 channels
+2026-02-25 17:00:07,503 - INFO - Found 1601 channels from selected collections
+2026-02-25 17:00:21,354 - INFO - Progress: 100/1601 channels processed
+2026-02-25 17:00:34,389 - INFO - Progress: 200/1601 channels processed
+2026-02-25 17:00:47,662 - INFO - Progress: 300/1601 channels processed
+2026-02-25 17:01:01,167 - INFO - Progress: 400/1601 channels processed
+2026-02-25 17:01:15,242 - INFO - Progress: 500/1601 channels processed
+2026-02-25 17:01:28,722 - INFO - Progress: 600/1601 channels processed
+2026-02-25 17:01:42,282 - INFO - Progress: 700/1601 channels processed
+2026-02-25 17:01:56,622 - INFO - Progress: 800/1601 channels processed
+2026-02-25 17:02:09,958 - INFO - Progress: 900/1601 channels processed
+2026-02-25 17:02:23,361 - INFO - Progress: 1000/1601 channels processed
+2026-02-25 17:02:36,480 - INFO - Progress: 1100/1601 channels processed
+2026-02-25 17:02:50,726 - INFO - Progress: 1200/1601 channels processed
+2026-02-25 17:03:04,544 - INFO - Progress: 1300/1601 channels processed
+2026-02-25 17:03:19,293 - INFO - Progress: 1400/1601 channels processed
+2026-02-25 17:03:33,393 - INFO - Progress: 1500/1601 channels processed
+2026-02-25 17:03:48,140 - INFO - Progress: 1600/1601 channels processed
+2026-02-25 17:03:48,550 - INFO - ==================================================
+2026-02-25 17:03:48,550 - INFO - SUMMARY
+2026-02-25 17:03:48,550 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 17:03:48,550 - INFO - Total unique channels: 1601
+2026-02-25 17:03:48,558 - INFO - Successfully processed: 1601
+2026-02-25 17:03:48,560 - INFO - Failed: 0
+2026-02-25 18:00:48,595 - INFO - 
+============================== NEW RUN ==============================
+2026-02-25 18:00:48,595 - INFO - Starting selective collection at 2026-02-25 18:00:48.595385
+2026-02-25 18:00:48,596 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-25 18:00:49,320 - INFO - Found 90 unique channels in live_shopee
+2026-02-25 18:00:49,479 - INFO - Found 166 unique channels in moniter_old
+2026-02-25 18:00:49,605 - INFO - Found 1345 unique channels in moniter_new
+2026-02-25 18:00:49,668 - INFO - 
+Collection Statistics:
+2026-02-25 18:00:49,668 - INFO -   live_shopee: 90 channels
+2026-02-25 18:00:49,668 - INFO -   moniter_old: 166 channels
+2026-02-25 18:00:49,668 - INFO -   moniter_new: 1345 channels
+2026-02-25 18:00:49,668 - INFO - Found 1601 channels from selected collections
+2026-02-25 18:01:04,118 - INFO - Progress: 100/1601 channels processed
+2026-02-25 18:01:18,728 - INFO - Progress: 200/1601 channels processed
+2026-02-25 18:01:31,988 - INFO - Progress: 300/1601 channels processed
+2026-02-25 18:01:45,848 - INFO - Progress: 400/1601 channels processed
+2026-02-25 18:01:59,527 - INFO - Progress: 500/1601 channels processed
+2026-02-25 18:02:13,577 - INFO - Progress: 600/1601 channels processed
+2026-02-25 18:02:26,947 - INFO - Progress: 700/1601 channels processed
+2026-02-25 18:02:40,047 - INFO - Progress: 800/1601 channels processed
+2026-02-25 18:02:52,860 - INFO - Progress: 900/1601 channels processed
+2026-02-25 18:03:06,682 - INFO - Progress: 1000/1601 channels processed
+2026-02-25 18:03:20,397 - INFO - Progress: 1100/1601 channels processed
+2026-02-25 18:03:33,987 - INFO - Progress: 1200/1601 channels processed
+2026-02-25 18:03:47,706 - INFO - Progress: 1300/1601 channels processed
+2026-02-25 18:04:01,836 - INFO - Progress: 1400/1601 channels processed
+2026-02-25 18:04:16,937 - INFO - Progress: 1500/1601 channels processed
+2026-02-25 18:04:30,280 - INFO - Progress: 1600/1601 channels processed
+2026-02-25 18:04:30,427 - INFO - ==================================================
+2026-02-25 18:04:30,427 - INFO - SUMMARY
+2026-02-25 18:04:30,427 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 18:04:30,427 - INFO - Total unique channels: 1601
+2026-02-25 18:04:30,427 - INFO - Successfully processed: 1601
+2026-02-25 18:04:30,427 - INFO - Failed: 0
+2026-02-25 19:00:30,474 - INFO - 
+============================== NEW RUN ==============================
+2026-02-25 19:00:30,474 - INFO - Starting selective collection at 2026-02-25 19:00:30.474621
+2026-02-25 19:00:30,474 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-25 19:00:31,160 - INFO - Found 89 unique channels in live_shopee
+2026-02-25 19:00:31,295 - INFO - Found 166 unique channels in moniter_old
+2026-02-25 19:00:31,400 - INFO - Found 1345 unique channels in moniter_new
+2026-02-25 19:00:31,460 - INFO - 
+Collection Statistics:
+2026-02-25 19:00:31,460 - INFO -   live_shopee: 89 channels
+2026-02-25 19:00:31,466 - INFO -   moniter_old: 166 channels
+2026-02-25 19:00:31,466 - INFO -   moniter_new: 1345 channels
+2026-02-25 19:00:31,466 - INFO - Found 1600 channels from selected collections
+2026-02-25 19:00:46,960 - INFO - Progress: 100/1600 channels processed
+2026-02-25 19:01:01,165 - INFO - Progress: 200/1600 channels processed
+2026-02-25 19:01:15,000 - INFO - Progress: 300/1600 channels processed
+2026-02-25 19:01:29,070 - INFO - Progress: 400/1600 channels processed
+2026-02-25 19:01:44,550 - INFO - Progress: 500/1600 channels processed
+2026-02-25 19:01:59,295 - INFO - Progress: 600/1600 channels processed
+2026-02-25 19:02:13,516 - INFO - Progress: 700/1600 channels processed
+2026-02-25 19:02:26,844 - INFO - Progress: 800/1600 channels processed
+2026-02-25 19:02:39,980 - INFO - Progress: 900/1600 channels processed
+2026-02-25 19:02:53,479 - INFO - Progress: 1000/1600 channels processed
+2026-02-25 19:03:07,415 - INFO - Progress: 1100/1600 channels processed
+2026-02-25 19:03:20,742 - INFO - Progress: 1200/1600 channels processed
+2026-02-25 19:03:33,757 - INFO - Progress: 1300/1600 channels processed
+2026-02-25 19:03:47,996 - INFO - Progress: 1400/1600 channels processed
+2026-02-25 19:04:01,689 - INFO - Progress: 1500/1600 channels processed
+2026-02-25 19:04:14,608 - INFO - Progress: 1600/1600 channels processed
+2026-02-25 19:04:14,631 - INFO - ==================================================
+2026-02-25 19:04:14,631 - INFO - SUMMARY
+2026-02-25 19:04:14,632 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 19:04:14,632 - INFO - Total unique channels: 1600
+2026-02-25 19:04:14,633 - INFO - Successfully processed: 1600
+2026-02-25 19:04:14,633 - INFO - Failed: 0
+2026-02-25 20:00:14,676 - INFO - 
+============================== NEW RUN ==============================
+2026-02-25 20:00:14,676 - INFO - Starting selective collection at 2026-02-25 20:00:14.676532
+2026-02-25 20:00:14,676 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-25 20:00:15,365 - INFO - Found 89 unique channels in live_shopee
+2026-02-25 20:00:15,511 - INFO - Found 166 unique channels in moniter_old
+2026-02-25 20:00:15,666 - INFO - Found 1345 unique channels in moniter_new
+2026-02-25 20:00:15,735 - INFO - 
+Collection Statistics:
+2026-02-25 20:00:15,735 - INFO -   live_shopee: 89 channels
+2026-02-25 20:00:15,735 - INFO -   moniter_old: 166 channels
+2026-02-25 20:00:15,735 - INFO -   moniter_new: 1345 channels
+2026-02-25 20:00:15,735 - INFO - Found 1600 channels from selected collections
+2026-02-25 20:00:30,659 - INFO - Progress: 100/1600 channels processed
+2026-02-25 20:00:45,595 - INFO - Progress: 200/1600 channels processed
+2026-02-25 20:00:59,565 - INFO - Progress: 300/1600 channels processed
+2026-02-25 20:01:14,175 - INFO - Progress: 400/1600 channels processed
+2026-02-25 20:01:30,371 - INFO - Progress: 500/1600 channels processed
+2026-02-25 20:01:44,270 - INFO - Progress: 600/1600 channels processed
+2026-02-25 20:01:58,594 - INFO - Progress: 700/1600 channels processed
+2026-02-25 20:02:13,497 - INFO - Progress: 800/1600 channels processed
+2026-02-25 20:02:27,434 - INFO - Progress: 900/1600 channels processed
+2026-02-25 20:02:42,644 - INFO - Progress: 1000/1600 channels processed
+2026-02-25 20:02:56,349 - INFO - Progress: 1100/1600 channels processed
+2026-02-25 20:03:11,734 - INFO - Progress: 1200/1600 channels processed
+2026-02-25 20:03:27,283 - INFO - Progress: 1300/1600 channels processed
+2026-02-25 20:03:42,553 - INFO - Progress: 1400/1600 channels processed
+2026-02-25 20:03:58,150 - INFO - Progress: 1500/1600 channels processed
+2026-02-25 20:04:13,132 - INFO - Progress: 1600/1600 channels processed
+2026-02-25 20:04:13,153 - INFO - ==================================================
+2026-02-25 20:04:13,153 - INFO - SUMMARY
+2026-02-25 20:04:13,153 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 20:04:13,153 - INFO - Total unique channels: 1600
+2026-02-25 20:04:13,153 - INFO - Successfully processed: 1600
+2026-02-25 20:04:13,155 - INFO - Failed: 0
+2026-02-25 21:00:13,201 - INFO - 
+============================== NEW RUN ==============================
+2026-02-25 21:00:13,201 - INFO - Starting selective collection at 2026-02-25 21:00:13.201171
+2026-02-25 21:00:13,202 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-25 21:00:13,892 - INFO - Found 89 unique channels in live_shopee
+2026-02-25 21:00:14,047 - INFO - Found 166 unique channels in moniter_old
+2026-02-25 21:00:14,202 - INFO - Found 1345 unique channels in moniter_new
+2026-02-25 21:00:14,267 - INFO - 
+Collection Statistics:
+2026-02-25 21:00:14,267 - INFO -   live_shopee: 89 channels
+2026-02-25 21:00:14,267 - INFO -   moniter_old: 166 channels
+2026-02-25 21:00:14,270 - INFO -   moniter_new: 1345 channels
+2026-02-25 21:00:14,270 - INFO - Found 1600 channels from selected collections
+2026-02-25 21:00:29,733 - INFO - Progress: 100/1600 channels processed
+2026-02-25 21:00:43,949 - INFO - Progress: 200/1600 channels processed
+2026-02-25 21:00:59,115 - INFO - Progress: 300/1600 channels processed
+2026-02-25 21:01:13,672 - INFO - Progress: 400/1600 channels processed
+2026-02-25 21:01:28,962 - INFO - Progress: 500/1600 channels processed
+2026-02-25 21:01:44,631 - INFO - Progress: 600/1600 channels processed
+2026-02-25 21:02:00,212 - INFO - Progress: 700/1600 channels processed
+2026-02-25 21:02:15,704 - INFO - Progress: 800/1600 channels processed
+2026-02-25 21:02:30,491 - INFO - Progress: 900/1600 channels processed
+2026-02-25 21:02:45,245 - INFO - Progress: 1000/1600 channels processed
+2026-02-25 21:02:58,710 - INFO - Progress: 1100/1600 channels processed
+2026-02-25 21:03:12,900 - INFO - Progress: 1200/1600 channels processed
+2026-02-25 21:03:27,300 - INFO - Progress: 1300/1600 channels processed
+2026-02-25 21:03:41,110 - INFO - Progress: 1400/1600 channels processed
+2026-02-25 21:03:55,730 - INFO - Progress: 1500/1600 channels processed
+2026-02-25 21:04:11,000 - INFO - Progress: 1600/1600 channels processed
+2026-02-25 21:04:11,023 - INFO - ==================================================
+2026-02-25 21:04:11,023 - INFO - SUMMARY
+2026-02-25 21:04:11,024 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 21:04:11,024 - INFO - Total unique channels: 1600
+2026-02-25 21:04:11,024 - INFO - Successfully processed: 1600
+2026-02-25 21:04:11,024 - INFO - Failed: 0
+2026-02-25 22:00:11,088 - INFO - 
+============================== NEW RUN ==============================
+2026-02-25 22:00:11,088 - INFO - Starting selective collection at 2026-02-25 22:00:11.088523
+2026-02-25 22:00:11,090 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-25 22:00:11,905 - INFO - Found 89 unique channels in live_shopee
+2026-02-25 22:00:12,052 - INFO - Found 166 unique channels in moniter_old
+2026-02-25 22:00:12,185 - INFO - Found 1345 unique channels in moniter_new
+2026-02-25 22:00:12,250 - INFO - 
+Collection Statistics:
+2026-02-25 22:00:12,250 - INFO -   live_shopee: 89 channels
+2026-02-25 22:00:12,255 - INFO -   moniter_old: 166 channels
+2026-02-25 22:00:12,255 - INFO -   moniter_new: 1345 channels
+2026-02-25 22:00:12,255 - INFO - Found 1600 channels from selected collections
+2026-02-25 22:00:27,732 - INFO - Progress: 100/1600 channels processed
+2026-02-25 22:00:43,760 - INFO - Progress: 200/1600 channels processed
+2026-02-25 22:00:59,209 - INFO - Progress: 300/1600 channels processed
+2026-02-25 22:01:14,006 - INFO - Progress: 400/1600 channels processed
+2026-02-25 22:01:29,649 - INFO - Progress: 500/1600 channels processed
+2026-02-25 22:01:44,306 - INFO - Progress: 600/1600 channels processed
+2026-02-25 22:01:58,606 - INFO - Progress: 700/1600 channels processed
+2026-02-25 22:02:12,662 - INFO - Progress: 800/1600 channels processed
+2026-02-25 22:02:26,139 - INFO - Progress: 900/1600 channels processed
+2026-02-25 22:02:40,490 - INFO - Progress: 1000/1600 channels processed
+2026-02-25 22:02:53,435 - INFO - Progress: 1100/1600 channels processed
+2026-02-25 22:03:07,928 - INFO - Progress: 1200/1600 channels processed
+2026-02-25 22:03:22,658 - INFO - Progress: 1300/1600 channels processed
+2026-02-25 22:03:36,878 - INFO - Progress: 1400/1600 channels processed
+2026-02-25 22:03:51,798 - INFO - Progress: 1500/1600 channels processed
+2026-02-25 22:04:06,517 - INFO - Progress: 1600/1600 channels processed
+2026-02-25 22:04:06,538 - INFO - ==================================================
+2026-02-25 22:04:06,538 - INFO - SUMMARY
+2026-02-25 22:04:06,538 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 22:04:06,538 - INFO - Total unique channels: 1600
+2026-02-25 22:04:06,538 - INFO - Successfully processed: 1600
+2026-02-25 22:04:06,538 - INFO - Failed: 0
+2026-02-25 23:00:06,710 - INFO - 
+============================== NEW RUN ==============================
+2026-02-25 23:00:06,710 - INFO - Starting selective collection at 2026-02-25 23:00:06.710222
+2026-02-25 23:00:06,711 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-25 23:00:07,391 - INFO - Found 89 unique channels in live_shopee
+2026-02-25 23:00:07,542 - INFO - Found 166 unique channels in moniter_old
+2026-02-25 23:00:07,708 - INFO - Found 1345 unique channels in moniter_new
+2026-02-25 23:00:07,775 - INFO - 
+Collection Statistics:
+2026-02-25 23:00:07,775 - INFO -   live_shopee: 89 channels
+2026-02-25 23:00:07,777 - INFO -   moniter_old: 166 channels
+2026-02-25 23:00:07,777 - INFO -   moniter_new: 1345 channels
+2026-02-25 23:00:07,777 - INFO - Found 1600 channels from selected collections
+2026-02-25 23:00:24,408 - INFO - Progress: 100/1600 channels processed
+2026-02-25 23:00:38,758 - INFO - Progress: 200/1600 channels processed
+2026-02-25 23:00:53,099 - INFO - Progress: 300/1600 channels processed
+2026-02-25 23:01:06,738 - INFO - Progress: 400/1600 channels processed
+2026-02-25 23:01:21,058 - INFO - Progress: 500/1600 channels processed
+2026-02-25 23:01:35,138 - INFO - Progress: 600/1600 channels processed
+2026-02-25 23:01:49,637 - INFO - Progress: 700/1600 channels processed
+2026-02-25 23:02:03,452 - INFO - Progress: 800/1600 channels processed
+2026-02-25 23:02:18,037 - INFO - Progress: 900/1600 channels processed
+2026-02-25 23:02:31,957 - INFO - Progress: 1000/1600 channels processed
+2026-02-25 23:02:45,506 - INFO - Progress: 1100/1600 channels processed
+2026-02-25 23:02:59,137 - INFO - Progress: 1200/1600 channels processed
+2026-02-25 23:03:13,337 - INFO - Progress: 1300/1600 channels processed
+2026-02-25 23:03:28,130 - INFO - Progress: 1400/1600 channels processed
+2026-02-25 23:03:42,636 - INFO - Progress: 1500/1600 channels processed
+2026-02-25 23:03:58,664 - INFO - Progress: 1600/1600 channels processed
+2026-02-25 23:03:58,687 - INFO - ==================================================
+2026-02-25 23:03:58,687 - INFO - SUMMARY
+2026-02-25 23:03:58,687 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-25 23:03:58,687 - INFO - Total unique channels: 1600
+2026-02-25 23:03:58,687 - INFO - Successfully processed: 1600
+2026-02-25 23:03:58,687 - INFO - Failed: 0
+2026-02-26 00:00:58,725 - INFO - 
+============================== NEW RUN ==============================
+2026-02-26 00:00:58,725 - INFO - Starting selective collection at 2026-02-26 00:00:58.725575
+2026-02-26 00:00:58,727 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-26 00:00:59,497 - INFO - Found 89 unique channels in live_shopee
+2026-02-26 00:00:59,657 - INFO - Found 166 unique channels in moniter_old
+2026-02-26 00:00:59,827 - INFO - Found 1345 unique channels in moniter_new
+2026-02-26 00:00:59,892 - INFO - 
+Collection Statistics:
+2026-02-26 00:00:59,892 - INFO -   live_shopee: 89 channels
+2026-02-26 00:00:59,892 - INFO -   moniter_old: 166 channels
+2026-02-26 00:00:59,892 - INFO -   moniter_new: 1345 channels
+2026-02-26 00:00:59,892 - INFO - Found 1600 channels from selected collections
+2026-02-26 00:01:15,437 - INFO - Progress: 100/1600 channels processed
+2026-02-26 00:01:33,826 - INFO - Progress: 200/1600 channels processed
+2026-02-26 00:01:49,017 - INFO - Progress: 300/1600 channels processed
+2026-02-26 00:02:02,977 - INFO - Progress: 400/1600 channels processed
+2026-02-26 00:02:18,165 - INFO - Progress: 500/1600 channels processed
+2026-02-26 00:02:33,446 - INFO - Progress: 600/1600 channels processed
+2026-02-26 00:02:46,884 - INFO - Progress: 700/1600 channels processed
+2026-02-26 00:02:59,862 - INFO - Progress: 800/1600 channels processed
+2026-02-26 00:03:13,404 - INFO - Progress: 900/1600 channels processed
+2026-02-26 00:03:27,283 - INFO - Progress: 1000/1600 channels processed
+2026-02-26 00:03:40,856 - INFO - Progress: 1100/1600 channels processed
+2026-02-26 00:03:54,225 - INFO - Progress: 1200/1600 channels processed
+2026-02-26 00:04:08,383 - INFO - Progress: 1300/1600 channels processed
+2026-02-26 00:04:21,856 - INFO - Progress: 1400/1600 channels processed
+2026-02-26 00:04:35,581 - INFO - Progress: 1500/1600 channels processed
+2026-02-26 00:04:48,404 - INFO - Progress: 1600/1600 channels processed
+2026-02-26 00:04:48,430 - INFO - ==================================================
+2026-02-26 00:04:48,431 - INFO - SUMMARY
+2026-02-26 00:04:48,431 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-26 00:04:48,431 - INFO - Total unique channels: 1600
+2026-02-26 00:04:48,431 - INFO - Successfully processed: 1600
+2026-02-26 00:04:48,431 - INFO - Failed: 0
+2026-02-26 01:00:48,435 - INFO - 
+============================== NEW RUN ==============================
+2026-02-26 01:00:48,435 - INFO - Starting selective collection at 2026-02-26 01:00:48.435772
+2026-02-26 01:00:48,435 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-26 01:00:49,178 - INFO - Found 89 unique channels in live_shopee
+2026-02-26 01:00:49,322 - INFO - Found 166 unique channels in moniter_old
+2026-02-26 01:00:49,466 - INFO - Found 1345 unique channels in moniter_new
+2026-02-26 01:00:49,528 - INFO - 
+Collection Statistics:
+2026-02-26 01:00:49,528 - INFO -   live_shopee: 89 channels
+2026-02-26 01:00:49,528 - INFO -   moniter_old: 166 channels
+2026-02-26 01:00:49,528 - INFO -   moniter_new: 1345 channels
+2026-02-26 01:00:49,528 - INFO - Found 1600 channels from selected collections
+2026-02-26 01:01:04,462 - INFO - Progress: 100/1600 channels processed
+2026-02-26 01:01:19,301 - INFO - Progress: 200/1600 channels processed
+2026-02-26 01:01:33,571 - INFO - Progress: 300/1600 channels processed
+2026-02-26 01:01:47,691 - INFO - Progress: 400/1600 channels processed
+2026-02-26 01:02:02,470 - INFO - Progress: 500/1600 channels processed
+2026-02-26 01:02:15,713 - INFO - Progress: 600/1600 channels processed
+2026-02-26 01:02:28,293 - INFO - Progress: 700/1600 channels processed
+2026-02-26 01:02:40,760 - INFO - Progress: 800/1600 channels processed
+2026-02-26 01:02:53,849 - INFO - Progress: 900/1600 channels processed
+2026-02-26 01:03:07,209 - INFO - Progress: 1000/1600 channels processed
+2026-02-26 01:03:20,499 - INFO - Progress: 1100/1600 channels processed
+2026-02-26 01:03:33,468 - INFO - Progress: 1200/1600 channels processed
+2026-02-26 01:03:47,001 - INFO - Progress: 1300/1600 channels processed
+2026-02-26 01:04:00,178 - INFO - Progress: 1400/1600 channels processed
+2026-02-26 01:04:12,626 - INFO - Progress: 1500/1600 channels processed
+2026-02-26 01:04:25,471 - INFO - Progress: 1600/1600 channels processed
+2026-02-26 01:04:25,495 - INFO - ==================================================
+2026-02-26 01:04:25,495 - INFO - SUMMARY
+2026-02-26 01:04:25,495 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-26 01:04:25,495 - INFO - Total unique channels: 1600
+2026-02-26 01:04:25,495 - INFO - Successfully processed: 1600
+2026-02-26 01:04:25,498 - INFO - Failed: 0
+2026-02-26 02:00:25,524 - INFO - 
+============================== NEW RUN ==============================
+2026-02-26 02:00:25,524 - INFO - Starting selective collection at 2026-02-26 02:00:25.524251
+2026-02-26 02:00:25,524 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-26 02:00:26,215 - INFO - Found 89 unique channels in live_shopee
+2026-02-26 02:00:26,344 - INFO - Found 166 unique channels in moniter_old
+2026-02-26 02:00:26,480 - INFO - Found 1345 unique channels in moniter_new
+2026-02-26 02:00:26,533 - INFO - 
+Collection Statistics:
+2026-02-26 02:00:26,533 - INFO -   live_shopee: 89 channels
+2026-02-26 02:00:26,533 - INFO -   moniter_old: 166 channels
+2026-02-26 02:00:26,533 - INFO -   moniter_new: 1345 channels
+2026-02-26 02:00:26,540 - INFO - Found 1600 channels from selected collections
+2026-02-26 02:00:40,290 - INFO - Progress: 100/1600 channels processed
+2026-02-26 02:00:53,265 - INFO - Progress: 200/1600 channels processed
+2026-02-26 02:01:07,291 - INFO - Progress: 300/1600 channels processed
+2026-02-26 02:01:21,010 - INFO - Progress: 400/1600 channels processed
+2026-02-26 02:01:34,829 - INFO - Progress: 500/1600 channels processed
+2026-02-26 02:01:47,929 - INFO - Progress: 600/1600 channels processed
+2026-02-26 02:02:01,314 - INFO - Progress: 700/1600 channels processed
+2026-02-26 02:02:14,026 - INFO - Progress: 800/1600 channels processed
+2026-02-26 02:02:27,621 - INFO - Progress: 900/1600 channels processed
+2026-02-26 02:02:40,653 - INFO - Progress: 1000/1600 channels processed
+2026-02-26 02:02:53,408 - INFO - Progress: 1100/1600 channels processed
+2026-02-26 02:03:05,820 - INFO - Progress: 1200/1600 channels processed
+2026-02-26 02:03:18,727 - INFO - Progress: 1300/1600 channels processed
+2026-02-26 02:03:31,934 - INFO - Progress: 1400/1600 channels processed
+2026-02-26 02:03:45,307 - INFO - Progress: 1500/1600 channels processed
+2026-02-26 02:03:57,687 - INFO - Progress: 1600/1600 channels processed
+2026-02-26 02:03:57,713 - INFO - ==================================================
+2026-02-26 02:03:57,713 - INFO - SUMMARY
+2026-02-26 02:03:57,717 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-26 02:03:57,717 - INFO - Total unique channels: 1600
+2026-02-26 02:03:57,717 - INFO - Successfully processed: 1600
+2026-02-26 02:03:57,717 - INFO - Failed: 0
+2026-02-26 03:00:57,756 - INFO - 
+============================== NEW RUN ==============================
+2026-02-26 03:00:57,758 - INFO - Starting selective collection at 2026-02-26 03:00:57.757273
+2026-02-26 03:00:57,760 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-26 03:00:58,455 - INFO - Found 89 unique channels in live_shopee
+2026-02-26 03:00:58,591 - INFO - Found 166 unique channels in moniter_old
+2026-02-26 03:00:58,776 - INFO - Found 1345 unique channels in moniter_new
+2026-02-26 03:00:58,837 - INFO - 
+Collection Statistics:
+2026-02-26 03:00:58,838 - INFO -   live_shopee: 89 channels
+2026-02-26 03:00:58,840 - INFO -   moniter_old: 166 channels
+2026-02-26 03:00:58,841 - INFO -   moniter_new: 1345 channels
+2026-02-26 03:00:58,842 - INFO - Found 1600 channels from selected collections
+2026-02-26 03:01:13,461 - INFO - Progress: 100/1600 channels processed
+2026-02-26 03:01:27,819 - INFO - Progress: 200/1600 channels processed
+2026-02-26 03:01:41,741 - INFO - Progress: 300/1600 channels processed
+2026-02-26 03:01:55,218 - INFO - Progress: 400/1600 channels processed
+2026-02-26 03:02:08,630 - INFO - Progress: 500/1600 channels processed
+2026-02-26 03:02:20,821 - INFO - Progress: 600/1600 channels processed
+2026-02-26 03:02:32,925 - INFO - Progress: 700/1600 channels processed
+2026-02-26 03:02:44,677 - INFO - Progress: 800/1600 channels processed
+2026-02-26 03:02:56,690 - INFO - Progress: 900/1600 channels processed
+2026-02-26 03:03:09,600 - INFO - Progress: 1000/1600 channels processed
+2026-02-26 03:03:23,110 - INFO - Progress: 1100/1600 channels processed
+2026-02-26 03:03:35,999 - INFO - Progress: 1200/1600 channels processed
+2026-02-26 03:03:48,979 - INFO - Progress: 1300/1600 channels processed
+2026-02-26 03:04:01,630 - INFO - Progress: 1400/1600 channels processed
+2026-02-26 03:04:14,209 - INFO - Progress: 1500/1600 channels processed
+2026-02-26 03:04:26,661 - INFO - Progress: 1600/1600 channels processed
+2026-02-26 03:04:26,682 - INFO - ==================================================
+2026-02-26 03:04:26,683 - INFO - SUMMARY
+2026-02-26 03:04:26,683 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-26 03:04:26,683 - INFO - Total unique channels: 1600
+2026-02-26 03:04:26,683 - INFO - Successfully processed: 1600
+2026-02-26 03:04:26,683 - INFO - Failed: 0
+2026-02-26 04:00:26,721 - INFO - 
+============================== NEW RUN ==============================
+2026-02-26 04:00:26,721 - INFO - Starting selective collection at 2026-02-26 04:00:26.721496
+2026-02-26 04:00:26,721 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-26 04:00:27,401 - INFO - Found 89 unique channels in live_shopee
+2026-02-26 04:00:27,524 - INFO - Found 166 unique channels in moniter_old
+2026-02-26 04:00:27,638 - INFO - Found 1345 unique channels in moniter_new
+2026-02-26 04:00:27,691 - INFO - 
+Collection Statistics:
+2026-02-26 04:00:27,691 - INFO -   live_shopee: 89 channels
+2026-02-26 04:00:27,691 - INFO -   moniter_old: 166 channels
+2026-02-26 04:00:27,691 - INFO -   moniter_new: 1345 channels
+2026-02-26 04:00:27,691 - INFO - Found 1600 channels from selected collections
+2026-02-26 04:00:42,153 - INFO - Progress: 100/1600 channels processed
+2026-02-26 04:00:54,757 - INFO - Progress: 200/1600 channels processed
+2026-02-26 04:01:07,556 - INFO - Progress: 300/1600 channels processed
+2026-02-26 04:01:20,880 - INFO - Progress: 400/1600 channels processed
+2026-02-26 04:01:36,954 - INFO - Progress: 500/1600 channels processed
+2026-02-26 04:01:49,772 - INFO - Progress: 600/1600 channels processed
+2026-02-26 04:02:03,220 - INFO - Progress: 700/1600 channels processed
+2026-02-26 04:02:15,237 - INFO - Progress: 800/1600 channels processed
+2026-02-26 04:02:28,062 - INFO - Progress: 900/1600 channels processed
+2026-02-26 04:02:42,457 - INFO - Progress: 1000/1600 channels processed
+2026-02-26 04:02:55,274 - INFO - Progress: 1100/1600 channels processed
+2026-02-26 04:03:08,239 - INFO - Progress: 1200/1600 channels processed
+2026-02-26 04:03:21,269 - INFO - Progress: 1300/1600 channels processed
+2026-02-26 04:03:34,249 - INFO - Progress: 1400/1600 channels processed
+2026-02-26 04:03:48,518 - INFO - Progress: 1500/1600 channels processed
+2026-02-26 04:04:00,959 - INFO - Progress: 1600/1600 channels processed
+2026-02-26 04:04:00,984 - INFO - ==================================================
+2026-02-26 04:04:00,984 - INFO - SUMMARY
+2026-02-26 04:04:00,985 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-26 04:04:00,985 - INFO - Total unique channels: 1600
+2026-02-26 04:04:00,986 - INFO - Successfully processed: 1600
+2026-02-26 04:04:00,986 - INFO - Failed: 0
+2026-02-26 05:00:01,021 - INFO - 
+============================== NEW RUN ==============================
+2026-02-26 05:00:01,021 - INFO - Starting selective collection at 2026-02-26 05:00:01.021986
+2026-02-26 05:00:01,021 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-26 05:00:01,706 - INFO - Found 89 unique channels in live_shopee
+2026-02-26 05:00:01,837 - INFO - Found 166 unique channels in moniter_old
+2026-02-26 05:00:01,975 - INFO - Found 1345 unique channels in moniter_new
+2026-02-26 05:00:02,035 - INFO - 
+Collection Statistics:
+2026-02-26 05:00:02,035 - INFO -   live_shopee: 89 channels
+2026-02-26 05:00:02,035 - INFO -   moniter_old: 166 channels
+2026-02-26 05:00:02,035 - INFO -   moniter_new: 1345 channels
+2026-02-26 05:00:02,035 - INFO - Found 1600 channels from selected collections
+2026-02-26 05:00:16,057 - INFO - Progress: 100/1600 channels processed
+2026-02-26 05:00:28,484 - INFO - Progress: 200/1600 channels processed
+2026-02-26 05:00:40,735 - INFO - Progress: 300/1600 channels processed
+2026-02-26 05:00:53,084 - INFO - Progress: 400/1600 channels processed
+2026-02-26 05:01:06,434 - INFO - Progress: 500/1600 channels processed
+2026-02-26 05:01:19,657 - INFO - Progress: 600/1600 channels processed
+2026-02-26 05:01:33,096 - INFO - Progress: 700/1600 channels processed
+2026-02-26 05:01:46,294 - INFO - Progress: 800/1600 channels processed
+2026-02-26 05:01:59,423 - INFO - Progress: 900/1600 channels processed
+2026-02-26 05:02:12,445 - INFO - Progress: 1000/1600 channels processed
+2026-02-26 05:02:24,486 - INFO - Progress: 1100/1600 channels processed
+2026-02-26 05:02:37,283 - INFO - Progress: 1200/1600 channels processed
+2026-02-26 05:02:49,513 - INFO - Progress: 1300/1600 channels processed
+2026-02-26 05:03:01,943 - INFO - Progress: 1400/1600 channels processed
+2026-02-26 05:03:15,424 - INFO - Progress: 1500/1600 channels processed
+2026-02-26 05:03:28,083 - INFO - Progress: 1600/1600 channels processed
+2026-02-26 05:03:28,108 - INFO - ==================================================
+2026-02-26 05:03:28,108 - INFO - SUMMARY
+2026-02-26 05:03:28,108 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-26 05:03:28,112 - INFO - Total unique channels: 1600
+2026-02-26 05:03:28,112 - INFO - Successfully processed: 1600
+2026-02-26 05:03:28,112 - INFO - Failed: 0
+2026-02-26 06:00:28,154 - INFO - 
+============================== NEW RUN ==============================
+2026-02-26 06:00:28,154 - INFO - Starting selective collection at 2026-02-26 06:00:28.154204
+2026-02-26 06:00:28,154 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-26 06:00:28,841 - INFO - Found 89 unique channels in live_shopee
+2026-02-26 06:00:28,961 - INFO - Found 166 unique channels in moniter_old
+2026-02-26 06:00:29,108 - INFO - Found 1345 unique channels in moniter_new
+2026-02-26 06:00:29,160 - INFO - 
+Collection Statistics:
+2026-02-26 06:00:29,160 - INFO -   live_shopee: 89 channels
+2026-02-26 06:00:29,160 - INFO -   moniter_old: 166 channels
+2026-02-26 06:00:29,160 - INFO -   moniter_new: 1345 channels
+2026-02-26 06:00:29,160 - INFO - Found 1600 channels from selected collections
+2026-02-26 06:00:41,810 - INFO - Progress: 100/1600 channels processed
+2026-02-26 06:00:54,242 - INFO - Progress: 200/1600 channels processed
+2026-02-26 06:01:07,362 - INFO - Progress: 300/1600 channels processed
+2026-02-26 06:01:20,160 - INFO - Progress: 400/1600 channels processed
+2026-02-26 06:01:33,240 - INFO - Progress: 500/1600 channels processed
+2026-02-26 06:01:46,109 - INFO - Progress: 600/1600 channels processed
+2026-02-26 06:01:59,359 - INFO - Progress: 700/1600 channels processed
+2026-02-26 06:02:12,303 - INFO - Progress: 800/1600 channels processed
+2026-02-26 06:02:25,463 - INFO - Progress: 900/1600 channels processed
+2026-02-26 06:02:38,599 - INFO - Progress: 1000/1600 channels processed
+2026-02-26 06:02:51,297 - INFO - Progress: 1100/1600 channels processed
+2026-02-26 06:03:04,353 - INFO - Progress: 1200/1600 channels processed
+2026-02-26 06:03:17,809 - INFO - Progress: 1300/1600 channels processed
+2026-02-26 06:03:31,133 - INFO - Progress: 1400/1600 channels processed
+2026-02-26 06:03:44,916 - INFO - Progress: 1500/1600 channels processed
+2026-02-26 06:03:58,215 - INFO - Progress: 1600/1600 channels processed
+2026-02-26 06:03:58,239 - INFO - ==================================================
+2026-02-26 06:03:58,239 - INFO - SUMMARY
+2026-02-26 06:03:58,239 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-26 06:03:58,239 - INFO - Total unique channels: 1600
+2026-02-26 06:03:58,239 - INFO - Successfully processed: 1600
+2026-02-26 06:03:58,239 - INFO - Failed: 0
+2026-02-26 07:00:58,301 - INFO - 
+============================== NEW RUN ==============================
+2026-02-26 07:00:58,303 - INFO - Starting selective collection at 2026-02-26 07:00:58.301998
+2026-02-26 07:00:58,305 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-26 07:00:59,007 - INFO - Found 89 unique channels in live_shopee
+2026-02-26 07:00:59,157 - INFO - Found 166 unique channels in moniter_old
+2026-02-26 07:00:59,301 - INFO - Found 1345 unique channels in moniter_new
+2026-02-26 07:00:59,367 - INFO - 
+Collection Statistics:
+2026-02-26 07:00:59,368 - INFO -   live_shopee: 89 channels
+2026-02-26 07:00:59,368 - INFO -   moniter_old: 166 channels
+2026-02-26 07:00:59,368 - INFO -   moniter_new: 1345 channels
+2026-02-26 07:00:59,368 - INFO - Found 1600 channels from selected collections
+2026-02-26 07:01:13,293 - INFO - Progress: 100/1600 channels processed
+2026-02-26 07:01:26,777 - INFO - Progress: 200/1600 channels processed
+2026-02-26 07:01:40,117 - INFO - Progress: 300/1600 channels processed
+2026-02-26 07:01:53,098 - INFO - Progress: 400/1600 channels processed
+2026-02-26 07:02:06,387 - INFO - Progress: 500/1600 channels processed
+2026-02-26 07:02:19,002 - INFO - Progress: 600/1600 channels processed
+2026-02-26 07:02:31,749 - INFO - Progress: 700/1600 channels processed
+2026-02-26 07:02:44,826 - INFO - Progress: 800/1600 channels processed
+2026-02-26 07:02:57,396 - INFO - Progress: 900/1600 channels processed
+2026-02-26 07:03:10,856 - INFO - Progress: 1000/1600 channels processed
+2026-02-26 07:03:23,586 - INFO - Progress: 1100/1600 channels processed
+2026-02-26 07:03:36,426 - INFO - Progress: 1200/1600 channels processed
+2026-02-26 07:03:49,086 - INFO - Progress: 1300/1600 channels processed
+2026-02-26 07:04:01,769 - INFO - Progress: 1400/1600 channels processed
+2026-02-26 07:04:14,272 - INFO - Progress: 1500/1600 channels processed
+2026-02-26 07:04:26,653 - INFO - Progress: 1600/1600 channels processed
+2026-02-26 07:04:26,676 - INFO - ==================================================
+2026-02-26 07:04:26,676 - INFO - SUMMARY
+2026-02-26 07:04:26,676 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-26 07:04:26,676 - INFO - Total unique channels: 1600
+2026-02-26 07:04:26,676 - INFO - Successfully processed: 1600
+2026-02-26 07:04:26,676 - INFO - Failed: 0
+2026-02-26 08:00:26,723 - INFO - 
+============================== NEW RUN ==============================
+2026-02-26 08:00:26,723 - INFO - Starting selective collection at 2026-02-26 08:00:26.723989
+2026-02-26 08:00:26,725 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-26 08:00:27,513 - INFO - Found 93 unique channels in live_shopee
+2026-02-26 08:00:27,680 - INFO - Found 166 unique channels in moniter_old
+2026-02-26 08:00:27,846 - INFO - Found 1345 unique channels in moniter_new
+2026-02-26 08:00:27,949 - INFO - 
+Collection Statistics:
+2026-02-26 08:00:27,949 - INFO -   live_shopee: 93 channels
+2026-02-26 08:00:27,949 - INFO -   moniter_old: 166 channels
+2026-02-26 08:00:27,953 - INFO -   moniter_new: 1345 channels
+2026-02-26 08:00:27,953 - INFO - Found 1604 channels from selected collections
+2026-02-26 08:00:42,308 - INFO - Progress: 100/1604 channels processed
+2026-02-26 08:00:55,825 - INFO - Progress: 200/1604 channels processed
+2026-02-26 08:01:09,446 - INFO - Progress: 300/1604 channels processed
+2026-02-26 08:01:22,550 - INFO - Progress: 400/1604 channels processed
+2026-02-26 08:01:35,761 - INFO - Progress: 500/1604 channels processed
+2026-02-26 08:01:47,865 - INFO - Progress: 600/1604 channels processed
+2026-02-26 08:02:00,114 - INFO - Progress: 700/1604 channels processed
+2026-02-26 08:02:14,225 - INFO - Progress: 800/1604 channels processed
+2026-02-26 08:02:26,494 - INFO - Progress: 900/1604 channels processed
+2026-02-26 08:02:38,848 - INFO - Progress: 1000/1604 channels processed
+2026-02-26 08:02:50,944 - INFO - Progress: 1100/1604 channels processed
+2026-02-26 08:03:03,356 - INFO - Progress: 1200/1604 channels processed
+2026-02-26 08:03:15,822 - INFO - Progress: 1300/1604 channels processed
+2026-02-26 08:03:28,274 - INFO - Progress: 1400/1604 channels processed
+2026-02-26 08:03:41,605 - INFO - Progress: 1500/1604 channels processed
+2026-02-26 08:03:55,089 - INFO - Progress: 1600/1604 channels processed
+2026-02-26 08:03:55,639 - INFO - ==================================================
+2026-02-26 08:03:55,639 - INFO - SUMMARY
+2026-02-26 08:03:55,639 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-26 08:03:55,639 - INFO - Total unique channels: 1604
+2026-02-26 08:03:55,639 - INFO - Successfully processed: 1604
+2026-02-26 08:03:55,643 - INFO - Failed: 0
+2026-02-26 09:00:55,666 - INFO - 
+============================== NEW RUN ==============================
+2026-02-26 09:00:55,667 - INFO - Starting selective collection at 2026-02-26 09:00:55.667451
+2026-02-26 09:00:55,667 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-26 09:00:56,348 - INFO - Found 79 unique channels in live_shopee
+2026-02-26 09:00:56,403 - INFO - Found 14 unique channels in stop_shopee
+2026-02-26 09:00:56,485 - INFO - Found 166 unique channels in moniter_old
+2026-02-26 09:00:56,634 - INFO - Found 1345 unique channels in moniter_new
+2026-02-26 09:00:56,681 - INFO - 
+Collection Statistics:
+2026-02-26 09:00:56,687 - INFO -   live_shopee: 79 channels
+2026-02-26 09:00:56,687 - INFO -   stop_shopee: 14 channels
+2026-02-26 09:00:56,687 - INFO -   moniter_old: 166 channels
+2026-02-26 09:00:56,687 - INFO -   moniter_new: 1345 channels
+2026-02-26 09:00:56,687 - INFO - Found 1604 channels from selected collections
+2026-02-26 09:01:09,557 - INFO - Progress: 100/1604 channels processed
+2026-02-26 09:01:22,977 - INFO - Progress: 200/1604 channels processed
+2026-02-26 09:01:36,096 - INFO - Progress: 300/1604 channels processed
+2026-02-26 09:01:48,656 - INFO - Progress: 400/1604 channels processed
+2026-02-26 09:02:01,515 - INFO - Progress: 500/1604 channels processed
+2026-02-26 09:02:14,185 - INFO - Progress: 600/1604 channels processed
+2026-02-26 09:02:28,009 - INFO - Progress: 700/1604 channels processed
+2026-02-26 09:02:41,057 - INFO - Progress: 800/1604 channels processed
+2026-02-26 09:02:54,214 - INFO - Progress: 900/1604 channels processed
+2026-02-26 09:03:07,807 - INFO - Progress: 1000/1604 channels processed
+2026-02-26 09:03:21,493 - INFO - Progress: 1100/1604 channels processed
+2026-02-26 09:03:36,237 - INFO - Progress: 1200/1604 channels processed
+2026-02-26 09:03:50,592 - INFO - Progress: 1300/1604 channels processed
+2026-02-26 09:04:04,522 - INFO - Progress: 1400/1604 channels processed
+2026-02-26 09:04:18,069 - INFO - Progress: 1500/1604 channels processed
+2026-02-26 09:04:32,026 - INFO - Progress: 1600/1604 channels processed
+2026-02-26 09:04:32,550 - INFO - ==================================================
+2026-02-26 09:04:32,551 - INFO - SUMMARY
+2026-02-26 09:04:32,551 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-26 09:04:32,551 - INFO - Total unique channels: 1604
+2026-02-26 09:04:32,551 - INFO - Successfully processed: 1604
+2026-02-26 09:04:32,551 - INFO - Failed: 0
+2026-02-26 10:00:32,539 - INFO - 
+============================== NEW RUN ==============================
+2026-02-26 10:00:32,539 - INFO - Starting selective collection at 2026-02-26 10:00:32.539743
+2026-02-26 10:00:32,539 - INFO - Collections to process: ['live_shopee', 'stop_shopee', 'moniter_old', 'moniter_new', 'moniter_test']
+2026-02-26 10:00:33,221 - INFO - Found 82 unique channels in live_shopee
+2026-02-26 10:00:33,289 - INFO - Found 19 unique channels in stop_shopee
+2026-02-26 10:00:33,360 - INFO - Found 159 unique channels in moniter_old
+2026-02-26 10:00:33,489 - INFO - Found 1345 unique channels in moniter_new
+2026-02-26 10:00:33,552 - INFO - 
+Collection Statistics:
+2026-02-26 10:00:33,552 - INFO -   live_shopee: 82 channels
+2026-02-26 10:00:33,552 - INFO -   stop_shopee: 19 channels
+2026-02-26 10:00:33,552 - INFO -   moniter_old: 159 channels
+2026-02-26 10:00:33,552 - INFO -   moniter_new: 1345 channels
+2026-02-26 10:00:33,552 - INFO - Found 1605 channels from selected collections
+2026-02-26 10:00:48,310 - INFO - Progress: 100/1605 channels processed
+2026-02-26 10:01:02,299 - INFO - Progress: 200/1605 channels processed
+2026-02-26 10:01:16,268 - INFO - Progress: 300/1605 channels processed
+2026-02-26 10:01:29,778 - INFO - Progress: 400/1605 channels processed
+2026-02-26 10:01:43,798 - INFO - Progress: 500/1605 channels processed
+2026-02-26 10:01:58,868 - INFO - Progress: 600/1605 channels processed
+2026-02-26 10:02:12,947 - INFO - Progress: 700/1605 channels processed
+2026-02-26 10:02:26,097 - INFO - Progress: 800/1605 channels processed
+2026-02-26 10:02:39,617 - INFO - Progress: 900/1605 channels processed
+2026-02-26 10:02:53,946 - INFO - Progress: 1000/1605 channels processed
+2026-02-26 10:03:08,056 - INFO - Progress: 1100/1605 channels processed
+2026-02-26 10:03:21,717 - INFO - Progress: 1200/1605 channels processed
+2026-02-26 10:03:35,305 - INFO - Progress: 1300/1605 channels processed
+2026-02-26 10:03:49,285 - INFO - Progress: 1400/1605 channels processed
+2026-02-26 10:04:03,381 - INFO - Progress: 1500/1605 channels processed
+2026-02-26 10:04:15,735 - INFO - Progress: 1600/1605 channels processed
+2026-02-26 10:04:16,382 - INFO - ==================================================
+2026-02-26 10:04:16,382 - INFO - SUMMARY
+2026-02-26 10:04:16,383 - INFO - Collections processed: live_shopee, stop_shopee, moniter_old, moniter_new, moniter_test
+2026-02-26 10:04:16,383 - INFO - Total unique channels: 1605
+2026-02-26 10:04:16,385 - INFO - Successfully processed: 1605
+2026-02-26 10:04:16,385 - INFO - Failed: 0
