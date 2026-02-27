@@ -1,0 +1,1954 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopee Ads Monitor BY aumsound</title>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-color: #ee4d2d;
+            --secondary-color: #ff6b35;
+            --success-color: #4CAF50;
+            --warning-color: #ff9800;
+            --danger-color: #f44336;
+            --info-color: #2196F3;
+            --dark-bg: #1a1a2e;
+            --card-bg: #16213e;
+            --text-light: #ffffff;
+            --text-muted: #a8b2d1;
+            --border-color: #233554;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+            --shadow-hover: 0 15px 40px rgba(238,77,45,0.2);
+            --ads-color: #9C27B0;
+            --ads-gradient: linear-gradient(135deg, #9C27B0, #E040FB);
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #7B1FA2, #E040FB);
+            padding: 1rem 1.5rem;
+            box-shadow: 0 4px 20px rgba(156,39,176,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .header-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.15);
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+        .header-link:hover { background: rgba(255,255,255,0.25); }
+        .update-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            font-size: 0.85rem;
+        }
+        .update-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success-color); }
+        .update-dot.warning { background: var(--warning-color); animation: pulse 2s infinite; }
+        .update-dot.critical { background: var(--danger-color); animation: pulse 1s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+        .settings-btn {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .settings-btn:hover { background: rgba(255,255,255,0.2); transform: scale(1.05); }
+
+        /* Container */
+        .container { max-width: 1600px; margin: 0 auto; padding: 1.5rem 1rem; }
+
+        /* Overview Cards */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .ov-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.2rem;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .ov-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+        }
+        .ov-card.purple::before { background: var(--ads-gradient); }
+        .ov-card.green::before { background: linear-gradient(90deg, #4CAF50, #8BC34A); }
+        .ov-card.orange::before { background: linear-gradient(90deg, #ff9800, #ffb74d); }
+        .ov-card.red::before { background: linear-gradient(90deg, #f44336, #ef5350); }
+        .ov-card.blue::before { background: linear-gradient(90deg, #2196F3, #64B5F6); }
+        .ov-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+        .ov-label { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+        .ov-value { font-size: 1.8rem; font-weight: bold; }
+        .ov-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem; }
+        .ov-icon { position: absolute; bottom: 8px; right: 10px; font-size: 2.5rem; opacity: 0.08; }
+
+        /* Tabs */
+        .tab-bar {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            padding: 0.5rem 1.2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+        .tab-btn.active {
+            background: var(--ads-gradient);
+            color: white;
+            border-color: transparent;
+        }
+        .tab-btn:hover:not(.active) { border-color: #9C27B0; color: white; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Campaign Table */
+        .table-wrap {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            overflow-x: auto;
+            position: relative;
+        }
+        .table-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        .filter-input, .filter-select {
+            padding: 0.4rem 0.8rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+        .tbl {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+        }
+        .tbl th {
+            background: linear-gradient(135deg, #7B1FA2, #AB47BC);
+            color: white;
+            padding: 8px 6px;
+            text-align: left;
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            white-space: nowrap;
+            font-size: 0.78rem;
+        }
+        .tbl th:hover { background: linear-gradient(135deg, #AB47BC, #7B1FA2); }
+        .tbl td {
+            padding: 6px;
+            border-bottom: 1px solid var(--border-color);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .tbl tr:hover { background: rgba(156,39,176,0.1); }
+        .tbl .sort-icon { margin-left: 2px; font-size: 0.65rem; opacity: 0.6; }
+
+        /* Status Badges */
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.72rem; font-weight: 600; }
+        .badge-active { background: rgba(76,175,80,0.2); color: var(--success-color); border: 1px solid var(--success-color); }
+        .badge-paused { background: rgba(255,152,0,0.2); color: var(--warning-color); border: 1px solid var(--warning-color); }
+        .badge-full { background: rgba(156,39,176,0.2); color: #CE93D8; border: 1px solid #CE93D8; }
+        .badge-stopped { background: rgba(244,67,54,0.2); color: var(--danger-color); border: 1px solid var(--danger-color); }
+        .badge-normal { background: rgba(33,150,243,0.15); color: #64B5F6; border: 1px solid #64B5F6; }
+        .badge-competition { background: rgba(255,87,34,0.15); color: #FF8A65; border: 1px solid #FF8A65; }
+
+        /* Budget Controls */
+        .budget-btn {
+            padding: 3px 8px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .budget-btn.add { background: var(--success-color); color: white; }
+        .budget-btn.add:hover { background: #388E3C; transform: scale(1.05); }
+        .budget-btn.set { background: var(--info-color); color: white; }
+        .budget-btn.set:hover { background: #1976D2; transform: scale(1.05); }
+        .budget-btn.pause { background: var(--warning-color); color: white; }
+        .budget-btn.pause:hover { background: #F57C00; }
+        .budget-btn.resume { background: #4CAF50; color: white; }
+        .budget-btn.resume:hover { background: #388E3C; }
+        .budget-btn.stop { background: var(--danger-color); color: white; }
+        .budget-btn.stop:hover { background: #C62828; }
+        .budget-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
+        .budget-actions { display: flex; gap: 3px; align-items: center; }
+
+        /* ROAS indicator */
+        .roas-good { color: var(--success-color); font-weight: bold; }
+        .roas-ok { color: var(--warning-color); font-weight: bold; }
+        .roas-bad { color: var(--danger-color); font-weight: bold; }
+
+        /* Budget bar */
+        .budget-bar-wrap { width: 80px; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
+        .budget-bar { height: 100%; border-radius: 3px; transition: width 0.5s; }
+        .budget-bar.low { background: var(--success-color); }
+        .budget-bar.mid { background: var(--warning-color); }
+        .budget-bar.high { background: var(--danger-color); }
+        .budget-bar.full { background: #9C27B0; }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-overlay.show { display: flex; }
+        .modal-box {
+            background: linear-gradient(135deg, #1e2139, #252844);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 2px solid #9C27B0;
+            width: 90%;
+            max-width: 650px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            animation: slideIn 0.3s;
+        }
+        @keyframes slideIn { from{transform:translateY(-50px);opacity:0} to{transform:translateY(0);opacity:1} }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .modal-title { font-size: 1.3rem; font-weight: bold; display: flex; align-items: center; gap: 0.5rem; }
+        .modal-close { background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; }
+        .modal-close:hover { color: var(--primary-color); }
+
+        /* Form elements inside modal */
+        .form-group { margin-bottom: 1rem; }
+        .form-label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.5rem 0.8rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        .form-input:focus, .form-select:focus { border-color: #9C27B0; outline: none; }
+        .form-row { display: flex; gap: 1rem; }
+        .form-row .form-group { flex: 1; }
+        .form-hint { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem; }
+        .form-section {
+            margin-bottom: 1.2rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+        }
+        .form-section-title {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 0.8rem;
+            color: #CE93D8;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .form-actions { display: flex; justify-content: flex-end; gap: 0.8rem; margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--border-color); }
+        .btn {
+            padding: 0.5rem 1.2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        .btn-primary { background: #9C27B0; color: white; }
+        .btn-primary:hover { background: #AB47BC; transform: translateY(-2px); }
+        .btn-success { background: var(--success-color); color: white; }
+        .btn-success:hover { background: #388E3C; }
+        .btn-danger { background: var(--danger-color); color: white; }
+        .btn-danger:hover { background: #C62828; }
+        .btn-secondary { background: var(--card-bg); color: var(--text-light); border: 1px solid var(--border-color); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+        .btn-warning { background: var(--warning-color); color: white; }
+        .btn-warning:hover { background: #F57C00; }
+
+        /* Toggle switch */
+        .toggle-wrap { display: flex; align-items: center; gap: 0.5rem; }
+        .toggle { position: relative; width: 42px; height: 22px; }
+        .toggle input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: #555;
+            border-radius: 22px;
+            transition: 0.3s;
+        }
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            height: 16px; width: 16px;
+            left: 3px; bottom: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        .toggle input:checked + .toggle-slider { background: #9C27B0; }
+        .toggle input:checked + .toggle-slider::before { transform: translateX(20px); }
+
+        /* Action Log */
+        .log-panel {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .log-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            padding: 0.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.8rem;
+        }
+        .log-time { color: var(--text-muted); white-space: nowrap; min-width: 65px; }
+        .log-icon { font-size: 0.9rem; min-width: 20px; text-align: center; }
+        .log-icon.increase { color: var(--success-color); }
+        .log-icon.decrease { color: var(--danger-color); }
+        .log-icon.pause { color: var(--warning-color); }
+        .log-icon.resume { color: var(--info-color); }
+        .log-icon.schedule { color: #CE93D8; }
+        .log-msg { flex: 1; color: var(--text-light); }
+        .log-channel { color: #CE93D8; font-weight: 500; }
+
+        /* Snapshot table */
+        .snapshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .snap-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+        }
+        .snap-title { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .snap-chart { height: 120px; }
+
+        /* Time-window indicator */
+        .tw-badges { display: flex; gap: 4px; flex-wrap: wrap; }
+        .tw-badge {
+            font-size: 0.65rem;
+            padding: 1px 5px;
+            border-radius: 3px;
+            background: rgba(156,39,176,0.15);
+            color: #CE93D8;
+        }
+        .tw-badge.ok { background: rgba(76,175,80,0.15); color: var(--success-color); }
+        .tw-badge.fail { background: rgba(244,67,54,0.15); color: var(--danger-color); }
+
+        /* Auto-budget rule indicator */
+        .rule-indicator {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        .rule-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+        }
+        .rule-dot.active { background: var(--success-color); }
+        .rule-dot.idle { background: #555; }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            color: white;
+            font-size: 0.9rem;
+            z-index: 3000;
+            display: none;
+            animation: slideInRight 0.3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .toast.show { display: block; }
+        .toast.success { background: rgba(76,175,80,0.95); }
+        .toast.error { background: rgba(244,67,54,0.95); }
+        .toast.info { background: rgba(156,39,176,0.95); }
+        @keyframes slideInRight { from{transform:translateX(300px)} to{transform:translateX(0)} }
+        @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .overview-grid { grid-template-columns: repeat(2, 1fr); }
+            .header-content { justify-content: center; }
+            .ov-value { font-size: 1.4rem; }
+            .form-row { flex-direction: column; }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+        ::-webkit-scrollbar-thumb { background: rgba(156,39,176,0.3); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(156,39,176,0.5); }
+    </style>
+</head>
+<body>
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a class="logo" href="ads.html">
+                <i class="fas fa-ad"></i>
+                Shopee Ads Monitor
+            </a>
+            <div class="header-controls">
+                <a href="index.html" class="header-link"><i class="fas fa-tv"></i> Live Monitor</a>
+                <div class="update-status" id="updateStatus">
+                    <span class="update-dot" id="updateDot"></span>
+                    <span id="updateText">Loading...</span>
+                </div>
+                <button class="settings-btn" onclick="openGlobalSettings()">
+                    <i class="fas fa-cog"></i> Settings
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Overview Cards -->
+        <div class="overview-grid">
+            <div class="ov-card purple">
+                <div class="ov-label">เครดิตโฆษณา</div>
+                <div class="ov-value" id="ovCredit">&#3647;0</div>
+                <div class="ov-sub" id="ovCreditSub">-</div>
+                <i class="fas fa-wallet ov-icon"></i>
+            </div>
+            <div class="ov-card orange">
+                <div class="ov-label">ค่าแอดวันนี้</div>
+                <div class="ov-value" id="ovSpent">&#3647;0</div>
+                <div class="ov-sub" id="ovSpentSub">-</div>
+                <i class="fas fa-money-bill-wave ov-icon"></i>
+            </div>
+            <div class="ov-card green">
+                <div class="ov-label">ROAS เฉลี่ย</div>
+                <div class="ov-value" id="ovRoas">0</div>
+                <div class="ov-sub" id="ovRoasSub">-</div>
+                <i class="fas fa-chart-line ov-icon"></i>
+            </div>
+            <div class="ov-card blue">
+                <div class="ov-label">แคมเปญ Active</div>
+                <div class="ov-value" id="ovActive">0</div>
+                <div class="ov-sub" id="ovActiveSub">-</div>
+                <i class="fas fa-bullhorn ov-icon"></i>
+            </div>
+            <div class="ov-card red">
+                <div class="ov-label">งบเต็ม / หยุด</div>
+                <div class="ov-value" id="ovPaused">0</div>
+                <div class="ov-sub" id="ovPausedSub">-</div>
+                <i class="fas fa-pause-circle ov-icon"></i>
+            </div>
+        </div>
+
+        <!-- Tab Bar -->
+        <div class="tab-bar">
+            <button class="tab-btn active" onclick="switchTab('campaigns')"><i class="fas fa-table"></i> แคมเปญทั้งหมด</button>
+            <button class="tab-btn" onclick="switchTab('auto')"><i class="fas fa-robot"></i> Auto Budget</button>
+            <button class="tab-btn" onclick="switchTab('log')"><i class="fas fa-history"></i> Action Log</button>
+            <button class="tab-btn" onclick="switchTab('charts')"><i class="fas fa-chart-area"></i> กราฟ</button>
+        </div>
+
+        <!-- TAB: Campaigns -->
+        <div id="tab-campaigns" class="tab-content active">
+            <div class="table-wrap">
+                <div class="table-toolbar">
+                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                        <input type="text" class="filter-input" id="filterSearch" placeholder="ค้นหาช่อง..." oninput="filterCampaigns()">
+                        <select class="filter-select" id="filterStatus" onchange="filterCampaigns()">
+                            <option value="">ทุกสถานะ</option>
+                            <option value="active">Active</option>
+                            <option value="budget_full">งบเต็ม</option>
+                            <option value="paused">หยุดชั่วคราว</option>
+                            <option value="stopped">หยุดถาวร</option>
+                        </select>
+                        <select class="filter-select" id="filterType" onchange="filterCampaigns()">
+                            <option value="">ทุกประเภท</option>
+                            <option value="normal">ปกติ</option>
+                            <option value="competition">แข่งขันสูง</option>
+                        </select>
+                    </div>
+                    <div style="display:flex;gap:0.5rem;">
+                        <button class="btn btn-primary" onclick="openAddCampaign()"><i class="fas fa-plus"></i> เพิ่มแคมเปญ</button>
+                        <button class="btn btn-success" onclick="bulkAddBudget()"><i class="fas fa-coins"></i> เพิ่มงบทั้งหมด</button>
+                    </div>
+                </div>
+                <table class="tbl" id="campaignTable">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable('channel')">ช่อง <i class="fas fa-sort sort-icon"></i></th>
+                            <th onclick="sortTable('type')">ประเภท <i class="fas fa-sort sort-icon"></i></th>
+                            <th onclick="sortTable('status')">สถานะ <i class="fas fa-sort sort-icon"></i></th>
+                            <th onclick="sortTable('daily_budget')">งบ/วัน <i class="fas fa-sort sort-icon"></i></th>
+                            <th onclick="sortTable('spent_today')">ใช้ไป <i class="fas fa-sort sort-icon"></i></th>
+                            <th>% ใช้</th>
+                            <th onclick="sortTable('roas')">ROAS <i class="fas fa-sort sort-icon"></i></th>
+                            <th>เป้า</th>
+                            <th onclick="sortTable('clicks')">คลิก <i class="fas fa-sort sort-icon"></i></th>
+                            <th onclick="sortTable('cart')">รถเข็น <i class="fas fa-sort sort-icon"></i></th>
+                            <th onclick="sortTable('orders')">ออเดอร์ <i class="fas fa-sort sort-icon"></i></th>
+                            <th onclick="sortTable('sales')">ยอดขาย <i class="fas fa-sort sort-icon"></i></th>
+                            <th>15น.</th>
+                            <th>60น.</th>
+                            <th>180น.</th>
+                            <th>Auto</th>
+                            <th>จัดการ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="campaignBody"></tbody>
+                </table>
+                <div class="empty-state" id="emptyState" style="display:none;">
+                    <i class="fas fa-ad" style="font-size:3rem;opacity:0.2;display:block;margin-bottom:0.5rem;"></i>
+                    <p style="color:var(--text-muted);">ยังไม่มีข้อมูลแคมเปญ</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: Auto Budget -->
+        <div id="tab-auto" class="tab-content">
+            <div class="table-wrap">
+                <div class="table-toolbar">
+                    <h3 style="display:flex;align-items:center;gap:0.5rem;"><i class="fas fa-robot" style="color:#CE93D8;"></i> Auto Budget Rules Engine</h3>
+                    <div style="display:flex;gap:0.5rem;align-items:center;">
+                        <div class="toggle-wrap">
+                            <span style="font-size:0.85rem;">Auto Budget ทั้งหมด</span>
+                            <label class="toggle">
+                                <input type="checkbox" id="globalAutoToggle" onchange="toggleGlobalAuto()">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <table class="tbl" id="autoRulesTable">
+                    <thead>
+                        <tr>
+                            <th>ช่อง</th>
+                            <th>ประเภท</th>
+                            <th>Auto</th>
+                            <th>เป้า ROAS</th>
+                            <th>ค่ารถเข็น</th>
+                            <th>15น.</th>
+                            <th>60น.</th>
+                            <th>180น.</th>
+                            <th>ROAS ปัจจุบัน</th>
+                            <th>สถานะ Rule</th>
+                            <th>ครั้งถัดไป</th>
+                            <th>แก้ไข</th>
+                        </tr>
+                    </thead>
+                    <tbody id="autoRulesBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB: Log -->
+        <div id="tab-log" class="tab-content">
+            <div class="table-wrap">
+                <div class="table-toolbar">
+                    <h3 style="display:flex;align-items:center;gap:0.5rem;"><i class="fas fa-history" style="color:#CE93D8;"></i> Action Log</h3>
+                    <button class="btn btn-secondary" onclick="clearLog()"><i class="fas fa-trash"></i> ล้าง</button>
+                </div>
+                <div class="log-panel" id="logPanel">
+                    <div style="text-align:center;padding:2rem;color:var(--text-muted);">
+                        <i class="fas fa-clock" style="font-size:2rem;opacity:0.3;display:block;margin-bottom:0.5rem;"></i>
+                        ยังไม่มี Action Log
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: Charts -->
+        <div id="tab-charts" class="tab-content">
+            <div class="snapshot-grid">
+                <div class="snap-card">
+                    <div class="snap-title"><i class="fas fa-money-bill-wave" style="color:#ff9800;"></i> ค่าแอดสะสม (วันนี้)</div>
+                    <div class="snap-chart"><canvas id="chartSpend"></canvas></div>
+                </div>
+                <div class="snap-card">
+                    <div class="snap-title"><i class="fas fa-chart-line" style="color:#4CAF50;"></i> ROAS (วันนี้)</div>
+                    <div class="snap-chart"><canvas id="chartRoas"></canvas></div>
+                </div>
+                <div class="snap-card">
+                    <div class="snap-title"><i class="fas fa-shopping-cart" style="color:#CE93D8;"></i> รถเข็น (วันนี้)</div>
+                    <div class="snap-chart"><canvas id="chartCart"></canvas></div>
+                </div>
+                <div class="snap-card">
+                    <div class="snap-title"><i class="fas fa-receipt" style="color:#64B5F6;"></i> ยอดขาย (วันนี้)</div>
+                    <div class="snap-chart"><canvas id="chartSales"></canvas></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Campaign -->
+    <div class="modal-overlay" id="campaignModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div class="modal-title"><i class="fas fa-bullhorn" style="color:#CE93D8;"></i> <span id="modalCampaignTitle">เพิ่มแคมเปญ</span></div>
+                <button class="modal-close" onclick="closeCampaignModal()">&times;</button>
+            </div>
+            <div id="campaignForm">
+                <div class="form-section">
+                    <div class="form-section-title"><i class="fas fa-info-circle"></i> ข้อมูลพื้นฐาน</div>
+                    <div class="form-group">
+                        <label class="form-label">ชื่อช่อง / Channel</label>
+                        <input type="text" class="form-input" id="frmChannel" placeholder="ชื่อช่อง...">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">ประเภท</label>
+                            <select class="form-select" id="frmType" onchange="onTypeChange()">
+                                <option value="normal">ปกติ (ROAS + รถเข็น)</option>
+                                <option value="competition">แข่งขันสูง (รถเข็นเป็นหลัก)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">งบเริ่มต้น/วัน (บาท)</label>
+                            <input type="number" class="form-input" id="frmBudget" value="200" min="200" step="25">
+                            <div class="form-hint">ขั้นต่ำ 200, ลงท้าย 0/25/50/75</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <div class="form-section-title"><i class="fas fa-crosshairs"></i> เป้าหมาย</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">เป้า ROAS</label>
+                            <input type="number" class="form-input" id="frmRoasTarget" value="30" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">ค่ารถเข็น (1 รถเข็น = ? บาท)</label>
+                            <input type="number" class="form-input" id="frmCartValue" value="5" min="1">
+                            <div class="form-hint">เช่น 1 รถเข็น = 5 บาท</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-section" id="sectionNormal">
+                    <div class="form-section-title"><i class="fas fa-clock"></i> ช่วงเวลาวัดผล (ปกติ)</div>
+                    <div class="form-row">
+                        <div class="form-group"><div class="toggle-wrap"><label class="toggle"><input type="checkbox" id="frmEval15" checked><span class="toggle-slider"></span></label><span>15 นาที</span></div></div>
+                        <div class="form-group"><div class="toggle-wrap"><label class="toggle"><input type="checkbox" id="frmEval60" checked><span class="toggle-slider"></span></label><span>60 นาที</span></div></div>
+                        <div class="form-group"><div class="toggle-wrap"><label class="toggle"><input type="checkbox" id="frmEval180" checked><span class="toggle-slider"></span></label><span>180 นาที</span></div></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">ROAS ต่ำสุด (% ของเป้า)</label>
+                            <input type="number" class="form-input" id="frmRoasMinPct" value="50" min="10" max="100">
+                            <div class="form-hint">เช่น 50% ของเป้า30 = ROAS&lt;15 จะลดงบ</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">% งบใช้ก่อนประเมิน</label>
+                            <input type="number" class="form-input" id="frmBudgetThreshold" value="90" min="50" max="100">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">ช่วงเวลาเปิด/เพิ่มงบ (กรณีงบเต็ม/ถูกหยุด)</label>
+                        <input type="text" class="form-input" id="frmScheduleTimes" value="06:00,11:30,18:00,22:00">
+                        <div class="form-hint">คั่นด้วย , เช่น 06:00,11:30,18:00,22:00</div>
+                    </div>
+                </div>
+                <div class="form-section" id="sectionCompetition" style="display:none;">
+                    <div class="form-section-title"><i class="fas fa-fire"></i> ตั้งค่า (แข่งขันสูง)</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">เพิ่มงบทุก (นาที)</label>
+                            <input type="number" class="form-input" id="frmCompInterval" value="30" min="5">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">เพิ่มครั้งละ (บาท)</label>
+                            <input type="number" class="form-input" id="frmCompAmount" value="25" min="25" step="25">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">ช่วงไม่เพิ่ม (เริ่ม)</label>
+                            <input type="time" class="form-input" id="frmNoIncStart" value="03:00">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">ช่วงไม่เพิ่ม (สิ้นสุด)</label>
+                            <input type="time" class="form-input" id="frmNoIncEnd" value="05:00">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <div class="form-section-title"><i class="fas fa-robot"></i> Auto Budget</div>
+                    <div class="toggle-wrap">
+                        <label class="toggle"><input type="checkbox" id="frmAutoEnabled" checked><span class="toggle-slider"></span></label>
+                        <span>เปิด Auto Budget สำหรับแคมเปญนี้</span>
+                    </div>
+                </div>
+                <input type="hidden" id="frmEditId" value="">
+                <div class="form-actions">
+                    <button class="btn btn-secondary" onclick="closeCampaignModal()">ยกเลิก</button>
+                    <button class="btn btn-primary" onclick="saveCampaign()"><i class="fas fa-save"></i> บันทึก</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Set Budget -->
+    <div class="modal-overlay" id="budgetModal">
+        <div class="modal-box" style="max-width:400px;">
+            <div class="modal-header">
+                <div class="modal-title"><i class="fas fa-coins" style="color:#CE93D8;"></i> ตั้งงบ</div>
+                <button class="modal-close" onclick="closeBudgetModal()">&times;</button>
+            </div>
+            <div class="form-group"><label class="form-label">ช่อง: <strong id="budgetChannelName">-</strong></label></div>
+            <div class="form-group"><label class="form-label">งบปัจจุบัน: <strong id="budgetCurrent">&#3647;0</strong></label></div>
+            <div class="form-group"><label class="form-label">ใช้ไปแล้ว: <strong id="budgetSpent">&#3647;0</strong></label></div>
+            <div class="form-group">
+                <label class="form-label">งบใหม่ (บาท)</label>
+                <input type="number" class="form-input" id="frmNewBudget" min="200" step="25" value="200">
+                <div class="form-hint">ขั้นต่ำ 200, เพิ่มอย่างต่ำ 25 (ลงท้าย 0/25/50/75)</div>
+            </div>
+            <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;">
+                <button class="budget-btn add" onclick="quickBudget(25)">+25</button>
+                <button class="budget-btn add" onclick="quickBudget(50)">+50</button>
+                <button class="budget-btn add" onclick="quickBudget(75)">+75</button>
+                <button class="budget-btn add" onclick="quickBudget(100)">+100</button>
+                <button class="budget-btn add" onclick="quickBudget(200)">+200</button>
+                <button class="budget-btn add" onclick="quickBudget(500)">+500</button>
+            </div>
+            <input type="hidden" id="budgetEditId" value="">
+            <div class="form-actions">
+                <button class="btn btn-secondary" onclick="closeBudgetModal()">ยกเลิก</button>
+                <button class="btn btn-success" onclick="confirmSetBudget()"><i class="fas fa-check"></i> ตั้งงบ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Global Settings -->
+    <div class="modal-overlay" id="globalSettingsModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div class="modal-title"><i class="fas fa-cog" style="color:#CE93D8;"></i> ตั้งค่าทั่วไป</div>
+                <button class="modal-close" onclick="closeGlobalSettings()">&times;</button>
+            </div>
+            <div class="form-section">
+                <div class="form-section-title"><i class="fas fa-clock"></i> ความถี่</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">ดึงข้อมูล Ads ทุก (นาที)</label>
+                        <input type="number" class="form-input" id="gsFetchInterval" value="3" min="2" max="10">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">เก็บ Snapshot ทุก (นาที)</label>
+                        <input type="number" class="form-input" id="gsSnapshotInterval" value="5" min="5" max="30">
+                    </div>
+                </div>
+            </div>
+            <div class="form-section">
+                <div class="form-section-title"><i class="fas fa-coins"></i> ค่าเริ่มต้น</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">งบเริ่มต้น (บาท)</label>
+                        <input type="number" class="form-input" id="gsDefaultBudget" value="200" min="200" step="25">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">เป้า ROAS</label>
+                        <input type="number" class="form-input" id="gsDefaultRoas" value="30" min="1">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">ค่ารถเข็น (บาท)</label>
+                        <input type="number" class="form-input" id="gsDefaultCartValue" value="5" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">เพิ่มงบครั้งละ (บาท)</label>
+                        <input type="number" class="form-input" id="gsDefaultIncrement" value="25" min="25" step="25">
+                    </div>
+                </div>
+            </div>
+            <div class="form-section">
+                <div class="form-section-title"><i class="fas fa-bell"></i> การแจ้งเตือน</div>
+                <div class="toggle-wrap" style="margin-bottom:0.5rem;"><label class="toggle"><input type="checkbox" id="gsNotifyBudgetFull" checked><span class="toggle-slider"></span></label><span style="font-size:0.85rem;">แจ้งเตือนเมื่องบเต็ม</span></div>
+                <div class="toggle-wrap" style="margin-bottom:0.5rem;"><label class="toggle"><input type="checkbox" id="gsNotifyRoasBad" checked><span class="toggle-slider"></span></label><span style="font-size:0.85rem;">แจ้งเตือนเมื่อ ROAS ต่ำ</span></div>
+                <div class="toggle-wrap"><label class="toggle"><input type="checkbox" id="gsNotifyAutoAction" checked><span class="toggle-slider"></span></label><span style="font-size:0.85rem;">แจ้งเตือน Auto Budget ทำงาน</span></div>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-secondary" onclick="closeGlobalSettings()">ยกเลิก</button>
+                <button class="btn btn-warning" onclick="resetGlobalSettings()"><i class="fas fa-undo"></i> รีเซ็ต</button>
+                <button class="btn btn-primary" onclick="saveGlobalSettings()"><i class="fas fa-save"></i> บันทึก</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // ============================================
+    // FIREBASE INITIALIZATION
+    // ============================================
+    const firebaseConfig = {
+        apiKey: "AIzaSyAd6-C6uVZO1JN_0YCprYW87gSUZsYi0nk",
+        authDomain: "monitershopee.firebaseapp.com",
+        databaseURL: "https://monitershopee-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "monitershopee",
+        storageBucket: "monitershopee.appspot.com",
+        messagingSenderId: "YOUR_SENDER_ID",
+        appId: "YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    // ============================================
+    // GLOBAL STATE
+    // ============================================
+    let campaigns = {};         // campaign data from Firebase
+    let liveData = {};          // live_shopee data (shared)
+    let snapshots = {};         // snapshot data for time-window evaluation
+    let actionLog = [];         // action log entries
+    let sortField = '';
+    let sortDir = 'asc';
+    let chartInstances = {};
+    let autoEngineInterval = null;
+
+    // Global settings (persisted to localStorage)
+    let globalSettings = {
+        fetchInterval: 3,       // minutes
+        snapshotInterval: 5,    // minutes
+        defaultBudget: 200,
+        defaultRoas: 30,
+        defaultCartValue: 5,
+        defaultIncrement: 25,
+        notifyBudgetFull: true,
+        notifyRoasBad: true,
+        notifyAutoAction: true,
+        globalAutoEnabled: true
+    };
+
+    // ============================================
+    // INITIALIZATION
+    // ============================================
+    document.addEventListener('DOMContentLoaded', () => {
+        loadGlobalSettings();
+        initFirebaseListeners();
+        loadActionLog();
+        startAutoEngine();
+        updateClockDisplay();
+        setInterval(updateClockDisplay, 60000);
+    });
+
+    // ============================================
+    // FIREBASE LISTENERS
+    // ============================================
+    function initFirebaseListeners() {
+        // Listen to ads campaigns
+        database.ref('shopee_ads/campaigns').on('value', snap => {
+            campaigns = snap.val() || {};
+            renderCampaignTable();
+            renderAutoRulesTable();
+            updateOverview();
+        });
+
+        // Listen to ads metadata
+        database.ref('shopee_ads/metadata').on('value', snap => {
+            const meta = snap.val() || {};
+            updateLastUpdateDisplay(meta.last_update);
+        });
+
+        // Listen to ads snapshots (for time-window evaluation)
+        database.ref('shopee_ads/snapshots').on('value', snap => {
+            snapshots = snap.val() || {};
+            renderCampaignTable(); // re-render with snapshot data
+        });
+
+        // Listen to live data for clicks/cart/orders/sales (shared from main monitor)
+        database.ref('shopee_monitor/live_shopee').on('value', snap => {
+            liveData = snap.val() || {};
+        });
+
+        // Listen to ads daily summary
+        database.ref('shopee_ads/daily_summary').on('value', snap => {
+            const summaries = snap.val() || {};
+            updateCharts(summaries);
+        });
+    }
+
+    // ============================================
+    // BUDGET VALIDATION
+    // ============================================
+    function validateBudget(amount) {
+        // Must be >= 200
+        if (amount < 200) return { valid: false, msg: 'งบขั้นต่ำ 200 บาท' };
+        // Must end in 0, 25, 50, or 75
+        const remainder = amount % 100;
+        const validEndings = [0, 25, 50, 75];
+        if (!validEndings.includes(remainder)) {
+            return { valid: false, msg: 'งบต้องลงท้ายด้วย 0, 25, 50 หรือ 75' };
+        }
+        return { valid: true };
+    }
+
+    function roundBudget(amount) {
+        // Round to nearest valid budget (0/25/50/75)
+        const base = Math.floor(amount / 25) * 25;
+        return Math.max(200, base);
+    }
+
+    // ============================================
+    // OVERVIEW CARDS
+    // ============================================
+    function updateOverview() {
+        const entries = Object.entries(campaigns);
+        let totalSpent = 0, totalSales = 0, activeCount = 0, pausedCount = 0, fullCount = 0;
+        let roasSum = 0, roasCount = 0;
+        let totalCredit = 0;
+
+        entries.forEach(([id, c]) => {
+            totalSpent += parseFloat(c.spent_today || 0);
+            totalSales += parseFloat(c.sales || 0);
+            if (c.status === 'active') activeCount++;
+            if (c.status === 'paused' || c.status === 'stopped') pausedCount++;
+            if (c.status === 'budget_full') fullCount++;
+            if (c.roas > 0) { roasSum += parseFloat(c.roas); roasCount++; }
+            totalCredit = parseFloat(c.ad_credit || totalCredit);
+        });
+
+        const avgRoas = roasCount > 0 ? (roasSum / roasCount).toFixed(1) : 0;
+
+        document.getElementById('ovCredit').textContent = '\u0E3F' + totalCredit.toLocaleString('th-TH', {minimumFractionDigits: 2});
+        document.getElementById('ovSpent').textContent = '\u0E3F' + totalSpent.toLocaleString('th-TH', {minimumFractionDigits: 2});
+        document.getElementById('ovRoas').textContent = avgRoas;
+        document.getElementById('ovActive').textContent = activeCount;
+        document.getElementById('ovPaused').textContent = (pausedCount + fullCount);
+
+        document.getElementById('ovCreditSub').textContent = entries.length + ' แคมเปญ';
+        document.getElementById('ovSpentSub').textContent = 'ยอดขาย \u0E3F' + totalSales.toLocaleString('th-TH');
+        document.getElementById('ovRoasSub').textContent = roasCount + ' แคมเปญที่มี ROAS';
+        document.getElementById('ovActiveSub').textContent = 'จากทั้งหมด ' + entries.length;
+        document.getElementById('ovPausedSub').textContent = 'งบเต็ม ' + fullCount + ' / หยุด ' + pausedCount;
+    }
+
+    // ============================================
+    // CAMPAIGN TABLE RENDERING
+    // ============================================
+    function renderCampaignTable() {
+        const tbody = document.getElementById('campaignBody');
+        const entries = Object.entries(campaigns);
+
+        if (entries.length === 0) {
+            tbody.innerHTML = '';
+            document.getElementById('emptyState').style.display = 'block';
+            return;
+        }
+        document.getElementById('emptyState').style.display = 'none';
+
+        // Sort
+        let sorted = [...entries];
+        if (sortField) {
+            sorted.sort((a, b) => {
+                let va = a[1][sortField] || 0;
+                let vb = b[1][sortField] || 0;
+                if (typeof va === 'string') va = va.toLowerCase();
+                if (typeof vb === 'string') vb = vb.toLowerCase();
+                if (va < vb) return sortDir === 'asc' ? -1 : 1;
+                if (va > vb) return sortDir === 'asc' ? 1 : -1;
+                return 0;
+            });
+        }
+
+        tbody.innerHTML = sorted.map(([id, c]) => {
+            const spent = parseFloat(c.spent_today || 0);
+            const budget = parseFloat(c.daily_budget || 200);
+            const pct = budget > 0 ? Math.min(100, (spent / budget * 100)) : 0;
+            const roas = parseFloat(c.roas || 0);
+            const roasTarget = parseFloat(c.roas_target || 30);
+
+            // ROAS class
+            let roasClass = 'roas-bad';
+            if (roas >= roasTarget) roasClass = 'roas-good';
+            else if (roas >= roasTarget * 0.5) roasClass = 'roas-ok';
+
+            // Status badge
+            let statusBadge = '';
+            switch(c.status) {
+                case 'active': statusBadge = '<span class="badge badge-active">Active</span>'; break;
+                case 'paused': statusBadge = '<span class="badge badge-paused">หยุด</span>'; break;
+                case 'budget_full': statusBadge = '<span class="badge badge-full">งบเต็ม</span>'; break;
+                case 'stopped': statusBadge = '<span class="badge badge-stopped">หยุดถาวร</span>'; break;
+                default: statusBadge = '<span class="badge badge-active">Active</span>';
+            }
+
+            // Type badge
+            const typeBadge = c.campaign_type === 'competition'
+                ? '<span class="badge badge-competition">แข่งขัน</span>'
+                : '<span class="badge badge-normal">ปกติ</span>';
+
+            // Budget bar
+            let barClass = 'low';
+            if (pct >= 90) barClass = 'full';
+            else if (pct >= 70) barClass = 'high';
+            else if (pct >= 40) barClass = 'mid';
+
+            // Get live data for clicks/cart/orders/sales
+            const live = findLiveData(c.channel);
+            const clicks = live ? parseInt(live.clicks || 0) : parseInt(c.clicks || 0);
+            const cart = live ? parseInt(live.added_to_cart || live.cart_count || 0) : parseInt(c.cart || 0);
+            const orders = live ? parseInt(live.orders || 0) : parseInt(c.orders || 0);
+            const sales = live ? parseFloat(live.sales || 0) : parseFloat(c.sales || 0);
+
+            // Snapshot time-window evaluations
+            const tw15 = getTimeWindowEval(id, 15);
+            const tw60 = getTimeWindowEval(id, 60);
+            const tw180 = getTimeWindowEval(id, 180);
+
+            // Auto indicator
+            const autoOn = c.auto_enabled !== false;
+            const autoIcon = autoOn
+                ? '<span class="rule-indicator"><span class="rule-dot active"></span> ON</span>'
+                : '<span class="rule-indicator"><span class="rule-dot idle"></span> OFF</span>';
+
+            // Action buttons
+            let actions = '<div class="budget-actions">';
+            actions += '<button class="budget-btn set" onclick="openSetBudget(\'' + id + '\')" title="ตั้งงบ"><i class="fas fa-coins"></i></button>';
+            actions += '<button class="budget-btn add" onclick="quickAddBudget(\'' + id + '\', 25)" title="+25">+25</button>';
+            if (c.status === 'paused') {
+                actions += '<button class="budget-btn resume" onclick="resumeCampaign(\'' + id + '\')" title="เปิด"><i class="fas fa-play"></i></button>';
+            } else if (c.status === 'active') {
+                actions += '<button class="budget-btn pause" onclick="pauseCampaign(\'' + id + '\')" title="หยุด"><i class="fas fa-pause"></i></button>';
+            }
+            actions += '<button class="budget-btn set" onclick="editCampaign(\'' + id + '\')" title="แก้ไข" style="background:#7B1FA2;"><i class="fas fa-edit"></i></button>';
+            actions += '</div>';
+
+            return '<tr data-id="' + id + '" data-channel="' + (c.channel || '').toLowerCase() + '" data-status="' + (c.status || '') + '" data-type="' + (c.campaign_type || '') + '">' +
+                '<td style="max-width:150px;" title="' + (c.channel || '') + '">' + (c.channel || '-') + '</td>' +
+                '<td>' + typeBadge + '</td>' +
+                '<td>' + statusBadge + '</td>' +
+                '<td>\u0E3F' + budget.toLocaleString() + '</td>' +
+                '<td>\u0E3F' + spent.toLocaleString() + '</td>' +
+                '<td><div class="budget-bar-wrap"><div class="budget-bar ' + barClass + '" style="width:' + pct + '%"></div></div><span style="font-size:0.7rem;">' + pct.toFixed(0) + '%</span></td>' +
+                '<td class="' + roasClass + '">' + roas.toFixed(1) + '</td>' +
+                '<td style="color:var(--text-muted);">' + roasTarget + '</td>' +
+                '<td>' + clicks.toLocaleString() + '</td>' +
+                '<td>' + cart.toLocaleString() + '</td>' +
+                '<td>' + orders.toLocaleString() + '</td>' +
+                '<td>\u0E3F' + sales.toLocaleString() + '</td>' +
+                '<td>' + tw15 + '</td>' +
+                '<td>' + tw60 + '</td>' +
+                '<td>' + tw180 + '</td>' +
+                '<td>' + autoIcon + '</td>' +
+                '<td>' + actions + '</td>' +
+                '</tr>';
+        }).join('');
+    }
+
+    function findLiveData(channelName) {
+        if (!channelName || !liveData) return null;
+        const name = channelName.toLowerCase();
+        for (const [k, v] of Object.entries(liveData)) {
+            if (v.channel && v.channel.toLowerCase() === name) return v;
+        }
+        return null;
+    }
+
+    function getTimeWindowEval(campaignId, minutes) {
+        const campSnaps = snapshots[campaignId];
+        if (!campSnaps) return '<span class="tw-badge">-</span>';
+
+        const now = Date.now();
+        const windowStart = now - (minutes * 60 * 1000);
+
+        // Get snapshots within the time window
+        const snapsInWindow = [];
+        Object.entries(campSnaps).forEach(([ts, data]) => {
+            const t = parseInt(ts);
+            if (t >= windowStart && t <= now) {
+                snapsInWindow.push({ time: t, ...data });
+            }
+        });
+
+        if (snapsInWindow.length < 2) return '<span class="tw-badge">-</span>';
+
+        // Sort by time
+        snapsInWindow.sort((a, b) => a.time - b.time);
+        const first = snapsInWindow[0];
+        const last = snapsInWindow[snapsInWindow.length - 1];
+
+        const spentDiff = (last.spent || 0) - (first.spent || 0);
+        const cartDiff = (last.cart || 0) - (first.cart || 0);
+
+        const campaign = campaigns[campaignId];
+        if (!campaign) return '<span class="tw-badge">-</span>';
+
+        const cartValue = parseFloat(campaign.cart_value || 5);
+        const expectedSpend = cartDiff * cartValue;
+
+        // Evaluate: did spending match cart performance?
+        if (spentDiff <= 0) return '<span class="tw-badge">0</span>';
+
+        if (cartDiff > 0 && spentDiff <= expectedSpend * 1.5) {
+            return '<span class="tw-badge ok">+' + cartDiff + ' \u0E3F' + spentDiff.toFixed(0) + '</span>';
+        } else if (cartDiff > 0) {
+            return '<span class="tw-badge">+' + cartDiff + ' \u0E3F' + spentDiff.toFixed(0) + '</span>';
+        } else {
+            return '<span class="tw-badge fail">0 \u0E3F' + spentDiff.toFixed(0) + '</span>';
+        }
+    }
+
+    // ============================================
+    // AUTO-BUDGET RULES TABLE
+    // ============================================
+    function renderAutoRulesTable() {
+        const tbody = document.getElementById('autoRulesBody');
+        const entries = Object.entries(campaigns);
+
+        tbody.innerHTML = entries.map(([id, c]) => {
+            const autoOn = c.auto_enabled !== false;
+            const isComp = c.campaign_type === 'competition';
+            const typeBadge = isComp
+                ? '<span class="badge badge-competition">แข่งขัน</span>'
+                : '<span class="badge badge-normal">ปกติ</span>';
+
+            const roas = parseFloat(c.roas || 0);
+            const roasTarget = parseFloat(c.roas_target || 30);
+            let roasClass = 'roas-bad';
+            if (roas >= roasTarget) roasClass = 'roas-good';
+            else if (roas >= roasTarget * 0.5) roasClass = 'roas-ok';
+
+            // Rule status
+            const ruleStatus = getRuleStatus(id, c);
+
+            // Next action time
+            const nextTime = getNextScheduledTime(c);
+
+            const eval15 = isComp || c.eval_15 !== false ? '<i class="fas fa-check" style="color:var(--success-color);"></i>' : '<i class="fas fa-times" style="color:#555;"></i>';
+            const eval60 = !isComp && c.eval_60 !== false ? '<i class="fas fa-check" style="color:var(--success-color);"></i>' : '<i class="fas fa-times" style="color:#555;"></i>';
+            const eval180 = !isComp && c.eval_180 !== false ? '<i class="fas fa-check" style="color:var(--success-color);"></i>' : '<i class="fas fa-times" style="color:#555;"></i>';
+
+            return '<tr>' +
+                '<td>' + (c.channel || '-') + '</td>' +
+                '<td>' + typeBadge + '</td>' +
+                '<td>' + (autoOn ? '<span style="color:var(--success-color);">ON</span>' : '<span style="color:#555;">OFF</span>') + '</td>' +
+                '<td>' + (c.roas_target || 30) + '</td>' +
+                '<td>\u0E3F' + (c.cart_value || 5) + '</td>' +
+                '<td>' + eval15 + '</td>' +
+                '<td>' + eval60 + '</td>' +
+                '<td>' + eval180 + '</td>' +
+                '<td class="' + roasClass + '">' + roas.toFixed(1) + '</td>' +
+                '<td>' + ruleStatus + '</td>' +
+                '<td style="font-size:0.75rem;color:var(--text-muted);">' + nextTime + '</td>' +
+                '<td><button class="budget-btn set" onclick="editCampaign(\'' + id + '\')" style="background:#7B1FA2;"><i class="fas fa-edit"></i></button></td>' +
+                '</tr>';
+        }).join('');
+
+        document.getElementById('globalAutoToggle').checked = globalSettings.globalAutoEnabled;
+    }
+
+    function getRuleStatus(id, c) {
+        if (c.auto_enabled === false) return '<span style="color:#555;">ปิด</span>';
+        if (c.status === 'budget_full') return '<span style="color:#CE93D8;">รองบ</span>';
+        if (c.status === 'paused') return '<span style="color:var(--warning-color);">หยุดอยู่</span>';
+        if (c.status === 'stopped') return '<span style="color:var(--danger-color);">หยุดถาวร</span>';
+        return '<span style="color:var(--success-color);">กำลังทำงาน</span>';
+    }
+
+    function getNextScheduledTime(c) {
+        if (c.campaign_type === 'competition') {
+            const interval = parseInt(c.competition_interval || 30);
+            return 'ทุก ' + interval + ' นาที';
+        }
+        const times = (c.schedule_times || '06:00,11:30,18:00,22:00').split(',');
+        const now = new Date();
+        const nowMin = now.getHours() * 60 + now.getMinutes();
+
+        for (const t of times) {
+            const [h, m] = t.trim().split(':').map(Number);
+            if (h * 60 + m > nowMin) return t.trim();
+        }
+        return times[0] ? times[0].trim() + ' (พรุ่งนี้)' : '-';
+    }
+
+    // ============================================
+    // AUTO-BUDGET ENGINE
+    // ============================================
+    function startAutoEngine() {
+        // Run every 1 minute to check rules
+        if (autoEngineInterval) clearInterval(autoEngineInterval);
+        autoEngineInterval = setInterval(() => {
+            if (!globalSettings.globalAutoEnabled) return;
+            evaluateAllCampaigns();
+        }, 60000); // Check every minute
+    }
+
+    function evaluateAllCampaigns() {
+        Object.entries(campaigns).forEach(([id, c]) => {
+            if (c.auto_enabled === false) return;
+            if (c.campaign_type === 'competition') {
+                evaluateCompetitionCampaign(id, c);
+            } else {
+                evaluateNormalCampaign(id, c);
+            }
+        });
+    }
+
+    // ----- TYPE 1: NORMAL CAMPAIGN -----
+    function evaluateNormalCampaign(id, c) {
+        const spent = parseFloat(c.spent_today || 0);
+        const budget = parseFloat(c.daily_budget || 200);
+        const roas = parseFloat(c.roas || 0);
+        const roasTarget = parseFloat(c.roas_target || 30);
+        const cartValue = parseFloat(c.cart_value || 5);
+        const budgetThreshold = parseFloat(c.budget_threshold || 90) / 100;
+        const roasMinPct = parseFloat(c.roas_min_pct || 50) / 100;
+        const pctUsed = budget > 0 ? spent / budget : 0;
+
+        // Check ROAS too low -> reduce/stop
+        if (roas > 0 && roas < roasTarget * roasMinPct) {
+            if (spent > 200) {
+                // Freeze: set budget = spent amount (rounded)
+                const freezeBudget = roundBudget(Math.ceil(spent / 25) * 25);
+                if (budget !== freezeBudget) {
+                    updateCampaignBudget(id, freezeBudget, 'roas_bad_freeze');
+                }
+            } else if (spent < 200) {
+                // Pause
+                if (c.status !== 'paused') {
+                    updateCampaignStatus(id, 'paused', 'roas_bad_pause');
+                }
+            }
+            return;
+        }
+
+        // Budget >= threshold% used -> evaluate for increase
+        if (pctUsed >= budgetThreshold) {
+            // Check ROAS is good
+            if (roas >= roasTarget) {
+                addBudgetIncrement(id, c, 'roas_good');
+                return;
+            }
+
+            // Check cart performance across time windows
+            const windows = [];
+            if (c.eval_180 !== false) windows.push(180);
+            if (c.eval_60 !== false) windows.push(60);
+            if (c.eval_15 !== false) windows.push(15);
+
+            for (const mins of windows) {
+                if (isCartPerformanceGood(id, c, mins)) {
+                    addBudgetIncrement(id, c, 'cart_good_' + mins + 'min');
+                    return;
+                }
+            }
+        }
+
+        // Check scheduled times for paused/full campaigns
+        if (c.status === 'budget_full' || c.status === 'paused') {
+            checkScheduledReactivation(id, c);
+        }
+    }
+
+    // ----- TYPE 2: COMPETITION CAMPAIGN -----
+    function evaluateCompetitionCampaign(id, c) {
+        const spent = parseFloat(c.spent_today || 0);
+        const budget = parseFloat(c.daily_budget || 200);
+        const pctUsed = budget > 0 ? spent / budget : 0;
+
+        // Check no-increase time window
+        const now = new Date();
+        const noIncStart = c.no_increase_start || '03:00';
+        const noIncEnd = c.no_increase_end || '05:00';
+        if (isInTimeWindow(now, noIncStart, noIncEnd)) return;
+
+        // Budget full -> check if should add more
+        if (pctUsed >= 0.99 || c.status === 'budget_full') {
+            const interval = parseInt(c.competition_interval || 30);
+            const lastAction = c.last_auto_action || 0;
+            const elapsed = (Date.now() - lastAction) / 60000;
+
+            if (elapsed >= interval) {
+                // Check cart performance in last 15 min
+                if (isCartPerformanceGood(id, c, 15)) {
+                    const amount = parseInt(c.competition_amount || 25);
+                    addBudgetIncrement(id, c, 'competition_cart_good', amount);
+                } else {
+                    // Still add minimum to keep running
+                    addBudgetIncrement(id, c, 'competition_scheduled', 25);
+                }
+            }
+        }
+    }
+
+    function isCartPerformanceGood(id, c, minutes) {
+        const campSnaps = snapshots[id];
+        if (!campSnaps) return false;
+
+        const now = Date.now();
+        const windowStart = now - (minutes * 60 * 1000);
+        const cartValue = parseFloat(c.cart_value || 5);
+
+        const snapsInWindow = [];
+        Object.entries(campSnaps).forEach(([ts, data]) => {
+            const t = parseInt(ts);
+            if (t >= windowStart && t <= now) {
+                snapsInWindow.push({ time: t, ...data });
+            }
+        });
+
+        if (snapsInWindow.length < 2) return false;
+        snapsInWindow.sort((a, b) => a.time - b.time);
+
+        const first = snapsInWindow[0];
+        const last = snapsInWindow[snapsInWindow.length - 1];
+        const spentDiff = (last.spent || 0) - (first.spent || 0);
+        const cartDiff = (last.cart || 0) - (first.cart || 0);
+
+        // Must have spent at least minimum (cart_value per cart)
+        if (spentDiff < cartValue) return false;
+        // Cart must have increased
+        if (cartDiff <= 0) return false;
+        // Cost per cart should be <= cart_value target
+        const costPerCart = spentDiff / cartDiff;
+        return costPerCart <= cartValue * 1.5; // 50% tolerance
+    }
+
+    function addBudgetIncrement(id, c, reason, amount) {
+        const increment = amount || parseInt(globalSettings.defaultIncrement || 25);
+        const currentBudget = parseFloat(c.daily_budget || 200);
+        const newBudget = roundBudget(currentBudget + increment);
+
+        const validation = validateBudget(newBudget);
+        if (!validation.valid) return;
+
+        // Update Firebase
+        const updates = {
+            daily_budget: newBudget,
+            status: 'active',
+            last_auto_action: Date.now()
+        };
+        database.ref('shopee_ads/campaigns/' + id).update(updates);
+
+        // Log
+        addActionLog('increase', c.channel, 'เพิ่มงบ ' + currentBudget + ' -> ' + newBudget + ' (' + reason + ')');
+        showToast('เพิ่มงบ ' + c.channel + ': \u0E3F' + newBudget, 'info');
+    }
+
+    function updateCampaignBudget(id, newBudget, reason) {
+        const c = campaigns[id];
+        const oldBudget = c ? c.daily_budget : 0;
+        database.ref('shopee_ads/campaigns/' + id).update({ daily_budget: newBudget });
+        addActionLog('decrease', c ? c.channel : id, 'ตั้งงบ ' + oldBudget + ' -> ' + newBudget + ' (' + reason + ')');
+    }
+
+    function updateCampaignStatus(id, status, reason) {
+        const c = campaigns[id];
+        database.ref('shopee_ads/campaigns/' + id).update({ status: status });
+        const action = status === 'paused' ? 'pause' : (status === 'active' ? 'resume' : status);
+        addActionLog(action, c ? c.channel : id, 'เปลี่ยนสถานะ -> ' + status + ' (' + reason + ')');
+    }
+
+    function checkScheduledReactivation(id, c) {
+        const schedTimes = (c.schedule_times || '06:00,11:30,18:00,22:00').split(',');
+        const now = new Date();
+        const nowStr = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+
+        for (const t of schedTimes) {
+            const trimmed = t.trim();
+            if (nowStr === trimmed) {
+                const lastSchedule = c.last_schedule_action || '';
+                const todayKey = now.toISOString().split('T')[0] + '_' + trimmed;
+                if (lastSchedule === todayKey) return; // Already acted this time slot today
+
+                if (c.status === 'budget_full') {
+                    // Add 25 baht
+                    const newBudget = roundBudget(parseFloat(c.daily_budget || 200) + 25);
+                    database.ref('shopee_ads/campaigns/' + id).update({
+                        daily_budget: newBudget,
+                        status: 'active',
+                        last_schedule_action: todayKey
+                    });
+                    addActionLog('schedule', c.channel, 'ตามกำหนด ' + trimmed + ': เพิ่มงบ -> \u0E3F' + newBudget);
+                } else if (c.status === 'paused') {
+                    database.ref('shopee_ads/campaigns/' + id).update({
+                        status: 'active',
+                        last_schedule_action: todayKey
+                    });
+                    addActionLog('resume', c.channel, 'ตามกำหนด ' + trimmed + ': เปิดใหม่');
+                }
+                break;
+            }
+        }
+    }
+
+    function isInTimeWindow(now, startStr, endStr) {
+        const [sh, sm] = startStr.split(':').map(Number);
+        const [eh, em] = endStr.split(':').map(Number);
+        const nowMin = now.getHours() * 60 + now.getMinutes();
+        const startMin = sh * 60 + sm;
+        const endMin = eh * 60 + em;
+        if (startMin <= endMin) {
+            return nowMin >= startMin && nowMin <= endMin;
+        } else {
+            return nowMin >= startMin || nowMin <= endMin;
+        }
+    }
+
+    // ============================================
+    // CAMPAIGN CRUD
+    // ============================================
+    function openAddCampaign() {
+        document.getElementById('modalCampaignTitle').textContent = 'เพิ่มแคมเปญ';
+        document.getElementById('frmEditId').value = '';
+        document.getElementById('frmChannel').value = '';
+        document.getElementById('frmType').value = 'normal';
+        document.getElementById('frmBudget').value = globalSettings.defaultBudget;
+        document.getElementById('frmRoasTarget').value = globalSettings.defaultRoas;
+        document.getElementById('frmCartValue').value = globalSettings.defaultCartValue;
+        document.getElementById('frmEval15').checked = true;
+        document.getElementById('frmEval60').checked = true;
+        document.getElementById('frmEval180').checked = true;
+        document.getElementById('frmRoasMinPct').value = 50;
+        document.getElementById('frmBudgetThreshold').value = 90;
+        document.getElementById('frmScheduleTimes').value = '06:00,11:30,18:00,22:00';
+        document.getElementById('frmCompInterval').value = 30;
+        document.getElementById('frmCompAmount').value = 25;
+        document.getElementById('frmNoIncStart').value = '03:00';
+        document.getElementById('frmNoIncEnd').value = '05:00';
+        document.getElementById('frmAutoEnabled').checked = true;
+        onTypeChange();
+        document.getElementById('campaignModal').classList.add('show');
+    }
+
+    function editCampaign(id) {
+        const c = campaigns[id];
+        if (!c) return;
+
+        document.getElementById('modalCampaignTitle').textContent = 'แก้ไขแคมเปญ';
+        document.getElementById('frmEditId').value = id;
+        document.getElementById('frmChannel').value = c.channel || '';
+        document.getElementById('frmType').value = c.campaign_type || 'normal';
+        document.getElementById('frmBudget').value = c.daily_budget || 200;
+        document.getElementById('frmRoasTarget').value = c.roas_target || 30;
+        document.getElementById('frmCartValue').value = c.cart_value || 5;
+        document.getElementById('frmEval15').checked = c.eval_15 !== false;
+        document.getElementById('frmEval60').checked = c.eval_60 !== false;
+        document.getElementById('frmEval180').checked = c.eval_180 !== false;
+        document.getElementById('frmRoasMinPct').value = c.roas_min_pct || 50;
+        document.getElementById('frmBudgetThreshold').value = c.budget_threshold || 90;
+        document.getElementById('frmScheduleTimes').value = c.schedule_times || '06:00,11:30,18:00,22:00';
+        document.getElementById('frmCompInterval').value = c.competition_interval || 30;
+        document.getElementById('frmCompAmount').value = c.competition_amount || 25;
+        document.getElementById('frmNoIncStart').value = c.no_increase_start || '03:00';
+        document.getElementById('frmNoIncEnd').value = c.no_increase_end || '05:00';
+        document.getElementById('frmAutoEnabled').checked = c.auto_enabled !== false;
+        onTypeChange();
+        document.getElementById('campaignModal').classList.add('show');
+    }
+
+    function saveCampaign() {
+        const channel = document.getElementById('frmChannel').value.trim();
+        if (!channel) { showToast('กรุณากรอกชื่อช่อง', 'error'); return; }
+
+        const budget = parseInt(document.getElementById('frmBudget').value);
+        const validation = validateBudget(budget);
+        if (!validation.valid) { showToast(validation.msg, 'error'); return; }
+
+        const data = {
+            channel: channel,
+            campaign_type: document.getElementById('frmType').value,
+            daily_budget: budget,
+            roas_target: parseFloat(document.getElementById('frmRoasTarget').value) || 30,
+            cart_value: parseFloat(document.getElementById('frmCartValue').value) || 5,
+            eval_15: document.getElementById('frmEval15').checked,
+            eval_60: document.getElementById('frmEval60').checked,
+            eval_180: document.getElementById('frmEval180').checked,
+            roas_min_pct: parseInt(document.getElementById('frmRoasMinPct').value) || 50,
+            budget_threshold: parseInt(document.getElementById('frmBudgetThreshold').value) || 90,
+            schedule_times: document.getElementById('frmScheduleTimes').value || '06:00,11:30,18:00,22:00',
+            competition_interval: parseInt(document.getElementById('frmCompInterval').value) || 30,
+            competition_amount: parseInt(document.getElementById('frmCompAmount').value) || 25,
+            no_increase_start: document.getElementById('frmNoIncStart').value || '03:00',
+            no_increase_end: document.getElementById('frmNoIncEnd').value || '05:00',
+            auto_enabled: document.getElementById('frmAutoEnabled').checked,
+            last_update: new Date().toISOString()
+        };
+
+        const editId = document.getElementById('frmEditId').value;
+        if (editId) {
+            // Update existing
+            database.ref('shopee_ads/campaigns/' + editId).update(data);
+            showToast('อัพเดตแคมเปญสำเร็จ', 'success');
+        } else {
+            // Create new
+            data.status = 'active';
+            data.spent_today = 0;
+            data.roas = 0;
+            data.clicks = 0;
+            data.cart = 0;
+            data.orders = 0;
+            data.sales = 0;
+            const newRef = database.ref('shopee_ads/campaigns').push();
+            newRef.set(data);
+            showToast('เพิ่มแคมเปญสำเร็จ', 'success');
+        }
+        closeCampaignModal();
+    }
+
+    function closeCampaignModal() {
+        document.getElementById('campaignModal').classList.remove('show');
+    }
+
+    function onTypeChange() {
+        const type = document.getElementById('frmType').value;
+        document.getElementById('sectionNormal').style.display = type === 'normal' ? 'block' : 'none';
+        document.getElementById('sectionCompetition').style.display = type === 'competition' ? 'block' : 'none';
+    }
+
+    // ============================================
+    // BUDGET ACTIONS
+    // ============================================
+    function openSetBudget(id) {
+        const c = campaigns[id];
+        if (!c) return;
+        document.getElementById('budgetChannelName').textContent = c.channel || '-';
+        document.getElementById('budgetCurrent').textContent = '\u0E3F' + (c.daily_budget || 0).toLocaleString();
+        document.getElementById('budgetSpent').textContent = '\u0E3F' + (c.spent_today || 0).toLocaleString();
+        document.getElementById('frmNewBudget').value = c.daily_budget || 200;
+        document.getElementById('budgetEditId').value = id;
+        document.getElementById('budgetModal').classList.add('show');
+    }
+
+    function closeBudgetModal() {
+        document.getElementById('budgetModal').classList.remove('show');
+    }
+
+    function quickBudget(amount) {
+        const input = document.getElementById('frmNewBudget');
+        input.value = parseInt(input.value || 0) + amount;
+    }
+
+    function confirmSetBudget() {
+        const id = document.getElementById('budgetEditId').value;
+        const newBudget = parseInt(document.getElementById('frmNewBudget').value);
+        const validation = validateBudget(newBudget);
+        if (!validation.valid) { showToast(validation.msg, 'error'); return; }
+
+        const c = campaigns[id];
+        const oldBudget = c ? c.daily_budget : 0;
+
+        database.ref('shopee_ads/campaigns/' + id).update({
+            daily_budget: newBudget,
+            status: 'active'
+        });
+
+        addActionLog('increase', c ? c.channel : id, 'ตั้งงบ manual ' + oldBudget + ' -> ' + newBudget);
+        showToast('ตั้งงบ \u0E3F' + newBudget.toLocaleString() + ' สำเร็จ', 'success');
+        closeBudgetModal();
+    }
+
+    function quickAddBudget(id, amount) {
+        const c = campaigns[id];
+        if (!c) return;
+        const newBudget = roundBudget(parseFloat(c.daily_budget || 200) + amount);
+        database.ref('shopee_ads/campaigns/' + id).update({
+            daily_budget: newBudget,
+            status: 'active'
+        });
+        addActionLog('increase', c.channel, 'เพิ่มงบ +' + amount + ' -> \u0E3F' + newBudget);
+        showToast(c.channel + ': +' + amount + ' -> \u0E3F' + newBudget, 'success');
+    }
+
+    function pauseCampaign(id) {
+        const c = campaigns[id];
+        database.ref('shopee_ads/campaigns/' + id).update({ status: 'paused' });
+        addActionLog('pause', c ? c.channel : id, 'หยุดชั่วคราว (manual)');
+        showToast('หยุด ' + (c ? c.channel : '') + ' ชั่วคราว', 'info');
+    }
+
+    function resumeCampaign(id) {
+        const c = campaigns[id];
+        database.ref('shopee_ads/campaigns/' + id).update({ status: 'active' });
+        addActionLog('resume', c ? c.channel : id, 'เปิดใหม่ (manual)');
+        showToast('เปิด ' + (c ? c.channel : '') + ' ใหม่', 'success');
+    }
+
+    function bulkAddBudget() {
+        let count = 0;
+        Object.entries(campaigns).forEach(([id, c]) => {
+            if (c.status === 'budget_full' || (c.status === 'active' && parseFloat(c.spent_today || 0) >= parseFloat(c.daily_budget || 200) * 0.9)) {
+                const newBudget = roundBudget(parseFloat(c.daily_budget || 200) + 25);
+                database.ref('shopee_ads/campaigns/' + id).update({
+                    daily_budget: newBudget,
+                    status: 'active'
+                });
+                count++;
+            }
+        });
+        if (count > 0) {
+            addActionLog('increase', 'ทั้งหมด', 'เพิ่มงบ +25 ให้ ' + count + ' แคมเปญ');
+            showToast('เพิ่มงบ +25 ให้ ' + count + ' แคมเปญ', 'success');
+        } else {
+            showToast('ไม่มีแคมเปญที่ต้องเพิ่มงบ', 'info');
+        }
+    }
+
+    // ============================================
+    // FILTERING & SORTING
+    // ============================================
+    function filterCampaigns() {
+        const search = document.getElementById('filterSearch').value.toLowerCase();
+        const status = document.getElementById('filterStatus').value;
+        const type = document.getElementById('filterType').value;
+
+        document.querySelectorAll('#campaignBody tr').forEach(row => {
+            const ch = row.dataset.channel || '';
+            const st = row.dataset.status || '';
+            const tp = row.dataset.type || '';
+
+            let show = true;
+            if (search && !ch.includes(search)) show = false;
+            if (status && st !== status) show = false;
+            if (type && tp !== type) show = false;
+            row.style.display = show ? '' : 'none';
+        });
+    }
+
+    function sortTable(field) {
+        if (sortField === field) {
+            sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+        } else {
+            sortField = field;
+            sortDir = 'asc';
+        }
+        renderCampaignTable();
+    }
+
+    // ============================================
+    // TABS
+    // ============================================
+    function switchTab(name) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+        document.getElementById('tab-' + name).classList.add('active');
+        event.target.closest('.tab-btn').classList.add('active');
+    }
+
+    // ============================================
+    // ACTION LOG
+    // ============================================
+    function addActionLog(type, channel, message) {
+        const entry = {
+            time: new Date().toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' }),
+            type: type,
+            channel: channel,
+            message: message,
+            timestamp: Date.now()
+        };
+        actionLog.unshift(entry);
+        if (actionLog.length > 200) actionLog = actionLog.slice(0, 200);
+        saveActionLog();
+        renderLog();
+
+        // Also save to Firebase
+        database.ref('shopee_ads/action_log').push(entry);
+    }
+
+    function renderLog() {
+        const panel = document.getElementById('logPanel');
+        if (actionLog.length === 0) {
+            panel.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--text-muted);"><i class="fas fa-clock" style="font-size:2rem;opacity:0.3;display:block;margin-bottom:0.5rem;"></i>ยังไม่มี Action Log</div>';
+            return;
+        }
+
+        panel.innerHTML = actionLog.slice(0, 100).map(e => {
+            let iconClass = '';
+            let icon = '';
+            switch(e.type) {
+                case 'increase': iconClass = 'increase'; icon = '<i class="fas fa-arrow-up"></i>'; break;
+                case 'decrease': iconClass = 'decrease'; icon = '<i class="fas fa-arrow-down"></i>'; break;
+                case 'pause': iconClass = 'pause'; icon = '<i class="fas fa-pause"></i>'; break;
+                case 'resume': iconClass = 'resume'; icon = '<i class="fas fa-play"></i>'; break;
+                case 'schedule': iconClass = 'schedule'; icon = '<i class="fas fa-clock"></i>'; break;
+                default: iconClass = ''; icon = '<i class="fas fa-info"></i>';
+            }
+            return '<div class="log-item">' +
+                '<span class="log-time">' + e.time + '</span>' +
+                '<span class="log-icon ' + iconClass + '">' + icon + '</span>' +
+                '<span class="log-msg"><span class="log-channel">' + e.channel + '</span> ' + e.message + '</span>' +
+                '</div>';
+        }).join('');
+    }
+
+    function clearLog() {
+        actionLog = [];
+        saveActionLog();
+        renderLog();
+        showToast('ล้าง Log สำเร็จ', 'info');
+    }
+
+    function saveActionLog() {
+        try { localStorage.setItem('ads_action_log', JSON.stringify(actionLog)); } catch(e) {}
+    }
+    function loadActionLog() {
+        try {
+            const saved = localStorage.getItem('ads_action_log');
+            if (saved) actionLog = JSON.parse(saved);
+        } catch(e) {}
+        renderLog();
+    }
+
+    // ============================================
+    // CHARTS
+    // ============================================
+    function updateCharts(summaries) {
+        const labels = [];
+        const spendData = [];
+        const roasData = [];
+        const cartData = [];
+        const salesData = [];
+
+        // Use snapshots for today if available
+        const today = new Date().toISOString().split('T')[0];
+        const todaySummary = summaries[today];
+
+        if (todaySummary && todaySummary.hourly) {
+            Object.keys(todaySummary.hourly).sort().forEach(hour => {
+                const h = todaySummary.hourly[hour];
+                labels.push(hour + ':00');
+                spendData.push(h.spend || 0);
+                roasData.push(h.roas || 0);
+                cartData.push(h.cart || 0);
+                salesData.push(h.sales || 0);
+            });
+        }
+
+        const chartOpts = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                x: { ticks: { color: '#a8b2d1', font: { size: 9 } }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                y: { ticks: { color: '#a8b2d1', font: { size: 9 } }, grid: { color: 'rgba(255,255,255,0.05)' }, beginAtZero: true }
+            }
+        };
+
+        createOrUpdateChart('chartSpend', labels, spendData, '#ff9800', chartOpts);
+        createOrUpdateChart('chartRoas', labels, roasData, '#4CAF50', chartOpts);
+        createOrUpdateChart('chartCart', labels, cartData, '#CE93D8', chartOpts);
+        createOrUpdateChart('chartSales', labels, salesData, '#64B5F6', chartOpts);
+    }
+
+    function createOrUpdateChart(canvasId, labels, data, color, opts) {
+        if (chartInstances[canvasId]) chartInstances[canvasId].destroy();
+        const ctx = document.getElementById(canvasId);
+        if (!ctx) return;
+        chartInstances[canvasId] = new Chart(ctx.getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    borderColor: color,
+                    backgroundColor: color + '20',
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 2
+                }]
+            },
+            options: opts
+        });
+    }
+
+    // ============================================
+    // GLOBAL SETTINGS
+    // ============================================
+    function openGlobalSettings() {
+        document.getElementById('gsFetchInterval').value = globalSettings.fetchInterval;
+        document.getElementById('gsSnapshotInterval').value = globalSettings.snapshotInterval;
+        document.getElementById('gsDefaultBudget').value = globalSettings.defaultBudget;
+        document.getElementById('gsDefaultRoas').value = globalSettings.defaultRoas;
+        document.getElementById('gsDefaultCartValue').value = globalSettings.defaultCartValue;
+        document.getElementById('gsDefaultIncrement').value = globalSettings.defaultIncrement;
+        document.getElementById('gsNotifyBudgetFull').checked = globalSettings.notifyBudgetFull;
+        document.getElementById('gsNotifyRoasBad').checked = globalSettings.notifyRoasBad;
+        document.getElementById('gsNotifyAutoAction').checked = globalSettings.notifyAutoAction;
+        document.getElementById('globalSettingsModal').classList.add('show');
+    }
+
+    function closeGlobalSettings() {
+        document.getElementById('globalSettingsModal').classList.remove('show');
+    }
+
+    function saveGlobalSettings() {
+        globalSettings.fetchInterval = parseInt(document.getElementById('gsFetchInterval').value) || 3;
+        globalSettings.snapshotInterval = parseInt(document.getElementById('gsSnapshotInterval').value) || 5;
+        globalSettings.defaultBudget = parseInt(document.getElementById('gsDefaultBudget').value) || 200;
+        globalSettings.defaultRoas = parseInt(document.getElementById('gsDefaultRoas').value) || 30;
+        globalSettings.defaultCartValue = parseInt(document.getElementById('gsDefaultCartValue').value) || 5;
+        globalSettings.defaultIncrement = parseInt(document.getElementById('gsDefaultIncrement').value) || 25;
+        globalSettings.notifyBudgetFull = document.getElementById('gsNotifyBudgetFull').checked;
+        globalSettings.notifyRoasBad = document.getElementById('gsNotifyRoasBad').checked;
+        globalSettings.notifyAutoAction = document.getElementById('gsNotifyAutoAction').checked;
+        try { localStorage.setItem('ads_global_settings', JSON.stringify(globalSettings)); } catch(e) {}
+        closeGlobalSettings();
+        showToast('บันทึกการตั้งค่าสำเร็จ', 'success');
+    }
+
+    function resetGlobalSettings() {
+        globalSettings = {
+            fetchInterval: 3, snapshotInterval: 5,
+            defaultBudget: 200, defaultRoas: 30, defaultCartValue: 5, defaultIncrement: 25,
+            notifyBudgetFull: true, notifyRoasBad: true, notifyAutoAction: true,
+            globalAutoEnabled: true
+        };
+        try { localStorage.setItem('ads_global_settings', JSON.stringify(globalSettings)); } catch(e) {}
+        openGlobalSettings(); // Refresh form
+        showToast('รีเซ็ตการตั้งค่าสำเร็จ', 'info');
+    }
+
+    function loadGlobalSettings() {
+        try {
+            const saved = localStorage.getItem('ads_global_settings');
+            if (saved) globalSettings = { ...globalSettings, ...JSON.parse(saved) };
+        } catch(e) {}
+    }
+
+    function toggleGlobalAuto() {
+        globalSettings.globalAutoEnabled = document.getElementById('globalAutoToggle').checked;
+        try { localStorage.setItem('ads_global_settings', JSON.stringify(globalSettings)); } catch(e) {}
+        showToast('Auto Budget ' + (globalSettings.globalAutoEnabled ? 'เปิด' : 'ปิด'), 'info');
+    }
+
+    // ============================================
+    // UTILITY
+    // ============================================
+    function updateLastUpdateDisplay(timestamp) {
+        const el = document.getElementById('updateText');
+        const dot = document.getElementById('updateDot');
+        if (!timestamp) { el.textContent = 'ไม่มีข้อมูล'; return; }
+
+        const lastUpdate = new Date(timestamp);
+        const diff = Math.floor((Date.now() - lastUpdate.getTime()) / 60000);
+
+        if (diff < 5) {
+            el.textContent = 'อัพเดตเมื่อ ' + diff + ' นาทีที่แล้ว';
+            dot.className = 'update-dot';
+        } else if (diff < 15) {
+            el.textContent = 'อัพเดตเมื่อ ' + diff + ' นาทีที่แล้ว';
+            dot.className = 'update-dot warning';
+        } else {
+            el.textContent = 'ไม่ได้อัพเดต ' + diff + ' นาที!';
+            dot.className = 'update-dot critical';
+        }
+    }
+
+    function updateClockDisplay() {
+        // Update status periodically
+        const meta = campaigns._metadata;
+        if (meta && meta.last_update) {
+            updateLastUpdateDisplay(meta.last_update);
+        }
+    }
+
+    function showToast(message, type) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.className = 'toast show ' + (type || 'info');
+        setTimeout(() => { toast.classList.remove('show'); }, 3000);
+    }
+
+    </script>
+</body>
+</html>
